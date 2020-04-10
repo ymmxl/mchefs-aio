@@ -105,6 +105,8 @@ class kw_bot(commands.Cog):
 			if "-" not in i:
 				await message.channel.send("Check your SKU format shabi. Ex.(802022-401)")
 				return
+		#filtering duplicates
+		tmp = list(set(tmp))
 		#check if exists:
 		if current_kw:
 			for j in tmp:
@@ -129,6 +131,8 @@ class kw_bot(commands.Cog):
 			if "-" not in j:
 				await message.channel.send("Check your SKU format shabi. Ex.(802022-401)")
 				raise
+		#check for duplicates
+		temp = list(set(tmp))
 		for j in temp:
 			if not j in current_kw:
 				dump.append(j)
