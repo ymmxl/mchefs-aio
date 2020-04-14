@@ -8,13 +8,13 @@ class novel_bot(commands.Cog):
 		self.client = client
 		self.api_url = "https://novelship.com/api/products/PRODUCT_ID/offer-lists?where[active:eq]=true&page[number]=0&page[size]=1000"
 		self.search_url = "https://novelship.com/api/products/search?where[search]=KEYWORD&where[active:eq]=true&page[number]=0&page[size]=1"
-		self.rate = 1
+		self.rate = ""
 	@commands.Cog.listener()
 	async def on_ready(self):
 		#TASKS LOOP CANNOT BE PROMPTED AFTER !RELOAD COMMAND#
 		self.get_rates.start()
 		print("{} Novelship module logged in!".format(self.client.user.name))
-	@tasks.loop(seconds=15)
+	@tasks.loop(minutes=60)
 	async def get_rates(self):
 		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=78f7ab84e1762ef7aec7").json()
 		print(r)
