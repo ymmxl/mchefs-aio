@@ -82,7 +82,7 @@ class novel_bot(commands.Cog):
 				b = max((j.get("local_price") for j in q if j.get("type") == "buying"),default="-")
 				s = max((j.get("local_price") for j in q if j.get("type") == "selling"),default ="-")
 				#print(i," | buying: {}, selling: {}".format(b,s))
-				this = "L.Ask: RM {}\nH.Bid: RM {}".format(b,s)
+				this = "L.Ask: RM {}\nH.Bid: RM {}".format(s,b)
 			available_sizes.append({i:this})
 		d=dt.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 		embed = discord.Embed(color=16772304)
