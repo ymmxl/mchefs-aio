@@ -34,8 +34,6 @@ class novel_bot(commands.Cog):
 			size_list = i.get("sizes")
 
 		res = requests.get(self.api_url.replace("PRODUCT_ID",str(product_id)),timeout=10).json()
-		with open("test lists.json","w+") as f:
-			json.dump(res,f,indent=4)
 		if res["total"] == 0:
 			print("No bids.")
 		try:
