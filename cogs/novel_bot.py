@@ -80,7 +80,7 @@ class novel_bot(commands.Cog):
 				this = "L.Ask: RM -\nH.Bid: RM -"	
 			else:
 				b = max((j.get("local_price") for j in q if j.get("type") == "buying"),default="-")
-				s = max((j.get("local_price") for j in q if j.get("type") == "selling"),default ="-")
+				s = min((j.get("local_price") for j in q if j.get("type") == "selling"),default ="-")
 				#print(i," | buying: {}, selling: {}".format(b,s))
 				this = "L.Ask: RM {}\nH.Bid: RM {}".format(s,b)
 			available_sizes.append({i:this})
