@@ -1,7 +1,7 @@
 import json, os, discord, requests
 from datetime import datetime as d
 from discord.ext import commands
-import config_local as config
+import config
 class stockx_bot(commands.Cog):
 	def __init__(self,client):
 		self.client = client
