@@ -1,4 +1,4 @@
-import json, os, discord, requests
+import json, os, discord, requests, pytz
 from datetime import datetime as d
 from discord.ext import commands
 import config
@@ -39,8 +39,7 @@ class goat_bot(commands.Cog):
 		want_count = output['hits'][0]['want_count']
 		want_count_three = output['hits'][0]['three_day_rolling_want_count']
 
-		time = d.now()
-		t = time.strftime("%d/%m/%YT%H:%M:%SZ")
+		d=dt.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 		embed = discord.Embed(color=0xedf7f6)
 		embed.set_thumbnail(url=image)
 		embed.add_field(name="Product Name", value="[{}]({})".format(name, url), inline=False)
@@ -50,7 +49,7 @@ class goat_bot(commands.Cog):
 		embed.add_field(name="New Lowest Price", value="${}".format(new_lowest_price_cents), inline=True)
 		embed.add_field(name="Want Count in Last 3 Days", value="{}".format(want_count_three), inline=True)
 		embed.add_field(name="Total Want Count", value="{}".format(want_count), inline=True)
-		embed.set_footer(text="ymmxl Goat Bot v{} [{}]".format(config.BOT_VERSION,t),icon_url=config.ICON_URL)
+		embed.set_footer(text="ymmxl Goat Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
 		await message.channel.send(embed=embed)
 
 def setup(client):

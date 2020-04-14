@@ -1,4 +1,4 @@
-import json, os, discord, requests
+import json, os, discord, requests,pytz
 from datetime import datetime as d
 from discord.ext import commands
 import config
@@ -81,8 +81,7 @@ class stockx_bot(commands.Cog):
 
 		####EMBEDS IF FOOTER IS TOO LONG IT WILL MESS UP
 		####THE WHOLE FORMATTING OF THE EMBED. REMEMBER
-		time = d.now()
-		t = time.strftime("%d/%m/%Y %H:%M:%S")
+		d=dt.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
 		embed = discord.Embed(color=4500277)
 		embed.set_thumbnail(url=thumbnail_url)
 		embed.add_field(name="Product Name", value="[{}]({})".format(product_name, product_url), inline=False)
@@ -95,7 +94,7 @@ class stockx_bot(commands.Cog):
 		for i in available_sizes:
 			for j,k in i.items():
 				embed.add_field(name=j if j else "All", value=k, inline=True)
-		embed.set_footer(text="ymmxl StockX Bot v{} [{}]".format(config.BOT_VERSION,t),icon_url=config.ICON_URL)
+		embed.set_footer(text="ymmxl StockX Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
 		
 		await message.channel.send(embed=embed)
 
