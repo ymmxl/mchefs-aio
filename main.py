@@ -21,7 +21,7 @@ def main():
 		print("{} module reloaded.".format(extension))
 	if not config.TOKEN:
 		config.TOKEN = os.getenv("TOKEN")
-	ext = ["cogs.stockx_bot","cogs.goat_bot","cogs.kw_bot"]
+	ext = ["cogs.stockx_bot","cogs.goat_bot","cogs.kw_bot","cogs.novel_bot"]
 	for i in ext:
 		try:
 			client.load_extension(i)

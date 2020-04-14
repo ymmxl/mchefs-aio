@@ -51,7 +51,7 @@ class goat_bot(commands.Cog):
 		embed.add_field(name="Want Count in Last 3 Days", value="{}".format(want_count_three), inline=True)
 		embed.add_field(name="Total Want Count", value="{}".format(want_count), inline=True)
 		embed.set_footer(text="ymmxl Goat Bot v{} [{}]".format(config.BOT_VERSION,t),icon_url=config.ICON_URL)
-		await message.channel.send(embed=embed)		
+		await message.channel.send(embed=embed)
 
 def setup(client):
 	client.add_cog(goat_bot(client))

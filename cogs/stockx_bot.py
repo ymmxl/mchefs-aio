@@ -1,7 +1,7 @@
 import json, os, discord, requests
 from datetime import datetime as d
 from discord.ext import commands
-import config
+import config_local as config
 class stockx_bot(commands.Cog):
 	def __init__(self,client):
 		self.client = client
@@ -62,6 +62,7 @@ class stockx_bot(commands.Cog):
 		except IndexError:
 			await message.channel.send("Error fetching data from the API or product not loaded. Please try on another product.")
 			raise
+		
 		product_page_url = "https://stockx.com/api/products/{}?includes=market&currency=USD".format(object_id)
 		r = s.get(url=product_page_url)
 		t = json.loads(r.text)
@@ -70,7 +71,9 @@ class stockx_bot(commands.Cog):
 		highest_bid_size = t["Product"]["market"]["highestBidSize"]
 		try:
 			for i,j in t["Product"]["children"].items():
-				size = str(j["shoeSize"])
+				size = str(j.get("shoeSize","-"))
+				if not size:
+					size = "-"
 				this = "Lowest Ask: ${}\nHighest Bid: ${}\nLast Sale: ${}".format(str(j["market"].get("lowestAsk","-")),str(j["market"].get("highestBid","-")),str(j["market"].get("lastSale","-")))
 				available_sizes.append({size:this})
 		except AttributeError:
@@ -91,8 +94,9 @@ class stockx_bot(commands.Cog):
 		embed.add_field(name="Highest Bid", value="${}, Size: {}".format(highest_bid,highest_bid_size), inline=True)
 		for i in available_sizes:
 			for j,k in i.items():
-				embed.add_field(name=j, value=k, inline=True)
+				embed.add_field(name=j if j else "All", value=k, inline=True)
 		embed.set_footer(text="ymmxl StockX Bot v{} [{}]".format(config.BOT_VERSION,t),icon_url=config.ICON_URL)
+		
 		await message.channel.send(embed=embed)
 
 def setup(client):
