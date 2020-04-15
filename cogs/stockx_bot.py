@@ -1,5 +1,5 @@
 import json, os, discord, requests,pytz
-from datetime import datetime as d
+from datetime import datetime as dt
 from discord.ext import commands
 import config
 class stockx_bot(commands.Cog):
