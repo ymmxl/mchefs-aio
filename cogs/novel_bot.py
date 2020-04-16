@@ -72,8 +72,10 @@ class novel_bot(commands.Cog):
 		else:
 			lowest_ask_price = "-"
 			lowest_ask_size = "-"
-		res["results"].sort(key=lambda k:(k["type"],Decimal(k["size"].replace("US ",""))))
+		#res["results"].sort(key=lambda k:(k["type"],Decimal(re.search(r"(\d+\.*\d*)",k["size"]).group())))
+
 		available_sizes=[]
+		#filtering size following size_list and getting max value
 		for i in size_list:
 			q = list(filter(lambda k:(k["size"]==i),res["results"]))
 			if len(q) == 0:
@@ -98,7 +100,7 @@ class novel_bot(commands.Cog):
 		for i in available_sizes:
 			for j,k in i.items():
 				embed.add_field(name=j,value=k,inline=True)
-		embed.set_footer(text="ymmxl Novelship Bot v1.1 [{}]".format(d))
+		embed.set_footer(text="ymmxl Novelship Bot v1.2 [{}]".format(d))
 		await message.channel.send(embed=embed)
 def setup(client):
 	client.add_cog(novel_bot(client))
