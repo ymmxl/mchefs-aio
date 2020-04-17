@@ -14,9 +14,9 @@ class novel_bot(commands.Cog):
 		#TASKS LOOP CANNOT BE PROMPTED AFTER !RELOAD COMMAND#
 		self.get_rates.start()
 		print("{} Novelship module logged in!".format(self.client.user.name))
-	@tasks.loop(minutes=60)
+	@tasks.loop(hours=3)
 	async def get_rates(self):
-		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=78f7ab84e1762ef7aec7").json()
+		r = requests.get("https://free.currconv.com/api/v7/convert?q=USD_PHP&compact=ultra&apiKey=469f69ca5e89bfc25989").json()
 		print(r)
 		self.rate = r["SGD_MYR"]
 	@commands.command()
@@ -45,7 +45,7 @@ class novel_bot(commands.Cog):
 		res = requests.get(self.api_url.replace("PRODUCT_ID",str(product_id)),timeout=10).json()
 		if res["total"] == 0:
 			print("No bids.")
-		"""
+
 		try:
 			for i in res["results"]:
 				if i["local_currency_id"] == 3:
@@ -53,7 +53,7 @@ class novel_bot(commands.Cog):
 					break
 		except KeyError:
 			pass		
-		"""
+
 		for i in res["results"]:
 			if i["local_currency_id"] == 1:
 				i["local_price"] = round(i["local_price"]*self.rate)
