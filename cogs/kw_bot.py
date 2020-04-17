@@ -113,13 +113,19 @@ class kw_bot(commands.Cog):
 				if j in current_kw:
 					dmp.append(j)
 					tmp.remove(j)
-		if dmp!=[]:
+		if dmp!=[] and tmp == []:
 			await message.channel.send("SKU(s): `[{}]` already exists.".format(",".join(i for i in dmp)))
-		if tmp!=[]:
+
+		elif dmp !=[] and tmp!=[]:
+			await message.channel.send("SKU(s): `[{}]` already exists.".format(",".join(i for i in dmp)))
 			done = self.save(tmp)
-			if done:
-				await message.channel.send("Successfully added SKU(s) to kw list. To view current kw list please enter `!kw_list`")
-				print("sku(s): [{}] addded successfully.".format(",".join(i for i in tmp)))
+		elif dmp == [] and tmp !=[]:
+			done = self.save(tmp)
+		else:
+			await message.channel.send("`Something went wrong.`")
+		if done:
+			await message.channel.send("Successfully added SKU(s) to kw list. To view current kw list please enter `!kw_list`")
+			print("sku(s): [{}] addded successfully.".format(",".join(i for i in tmp)))
 	@commands.command(pass_context=True)
 	async def remove_kw(self,message,*,kw:str):
 		current_kw = self.get_list()
@@ -144,11 +150,12 @@ class kw_bot(commands.Cog):
 			raise
 		elif dump!=[] and t!=[]:
 			await message.channel.send("SKU(s): `[{}]` not found in current list. Please try again.".format(",".join(i for i in dump)))
-			await message.channel.send("Successfully removed SKU(s): `[{}]`.".format(",".join(i for i in t)))
+			d = self.remove(t)
 		else:
+			d = self.remove(t)
+		if d:
 			await message.channel.send("Successfully removed SKU(s): `[{}]`.".format(",".join(i for i in t)))
-		self.remove(t)
-		print("sku(s): [{}] removed successfully.".format(",".join(i for i in t)))
+			print("sku(s): [{}] removed successfully.".format(",".join(i for i in t)))
 	"""
 	@commands.command(pass_context=True)
 	async def clear_kw(self,message):
