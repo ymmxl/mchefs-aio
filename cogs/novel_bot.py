@@ -16,7 +16,7 @@ class novel_bot(commands.Cog):
 		print("{} Novelship module logged in!".format(self.client.user.name))
 	@tasks.loop(hours=3)
 	async def get_rates(self):
-		r = requests.get("https://free.currconv.com/api/v7/convert?q=USD_PHP&compact=ultra&apiKey=469f69ca5e89bfc25989").json()
+		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=469f69ca5e89bfc25989").json()
 		print(r)
 		self.rate = r["SGD_MYR"]
 	@commands.command()
@@ -49,7 +49,7 @@ class novel_bot(commands.Cog):
 		try:
 			for i in res["results"]:
 				if i["local_currency_id"] == 3:
-					rate = i["currency"]["rate"]
+					self.rate = i["currency"]["rate"]
 					break
 		except KeyError:
 			pass		
