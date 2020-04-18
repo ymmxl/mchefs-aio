@@ -14,9 +14,16 @@ class novel_bot(commands.Cog):
 		#TASKS LOOP CANNOT BE PROMPTED AFTER !RELOAD COMMAND#
 		self.get_rates.start()
 		print("{} Novelship module logged in!".format(self.client.user.name))
-	@tasks.loop(hours=3)
+	@tasks.loop(hours=12)
 	async def get_rates(self):
-		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=469f69ca5e89bfc25989").json()
+		h = :{
+		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.163 Safari/537.36",
+		"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+		"accept-encoding":"gzip, deflate, br",
+		"accept-language":"en-GB,en-US;q=0.9,en;q=0.8",
+		"if-none-match":"""W/"27-ZQCF16t6JNv+dx6atp1EapVHMD4\""""
+		}
+		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=469f69ca5e89bfc25989",headers=h).json()
 		print(r)
 		self.rate = r["SGD_MYR"]
 	@commands.command()
