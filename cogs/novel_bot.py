@@ -25,7 +25,10 @@ class novel_bot(commands.Cog):
 		}
 		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=469f69ca5e89bfc25989",headers=h).json()
 		print(r)
-		self.rate = r["SGD_MYR"]
+		if r.get("SGD_MYR"):
+			self.rate = r["SGD_MYR"]
+		else:
+			self.rate = 3
 	@commands.command()
 	async def r(self,message):
 		await message.channel.send("{}".format(str(self.rate)))
@@ -52,7 +55,7 @@ class novel_bot(commands.Cog):
 		res = requests.get(self.api_url.replace("PRODUCT_ID",str(product_id)),timeout=10).json()
 		if res["total"] == 0:
 			print("No bids.")
-
+		"""
 		try:
 			for i in res["results"]:
 				if i["local_currency_id"] == 3:
@@ -60,7 +63,7 @@ class novel_bot(commands.Cog):
 					break
 		except KeyError:
 			pass		
-
+		"""
 		for i in res["results"]:
 			if i["local_currency_id"] == 1:
 				i["local_price"] = round(i["local_price"]*self.rate)
