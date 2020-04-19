@@ -8,7 +8,7 @@ class novel_bot(commands.Cog):
 		self.client = client
 		self.api_url = "https://novelship.com/api/products/PRODUCT_ID/offer-lists?where[active:eq]=true&page[number]=0&page[size]=1000"
 		self.search_url = "https://novelship.com/api/products/search?where[search]=KEYWORD&where[active:eq]=true&page[number]=0&page[size]=1"
-		self.rate = ""
+		self.rate = None
 	@commands.Cog.listener()
 	async def on_ready(self):
 		#TASKS LOOP CANNOT BE PROMPTED AFTER !RELOAD COMMAND#
@@ -43,27 +43,35 @@ class novel_bot(commands.Cog):
 			product_name = i.get("name")
 			product_url = "https://novelship.com/{}".format(i.get("name_slug"))
 			thumbnail_url = i.get("gallery")[0]
-			release_date = i.get("drop_date")
-			if release_date:
+			release_date = i.get("drop_date","-")
+			if release_date != "-":
 				release_date=release_date.split("T")[0]
-			retail_price = i.get("cost")
+			retail_price = i.get("cost","-")
 			highest_bid_id = i.get("highest_offer_id")
 			lowest_ask_id = i.get("lowest_listing_id")
-			sku = i.get("sku").replace(" ","-")
+			sku = i.get("sku","-")
+			if sku:
+				if sku != "-":
+					sku.replace(" ","-")
+			else:
+				sku = "-"
 			size_list = i.get("sizes")
 
 		res = requests.get(self.api_url.replace("PRODUCT_ID",str(product_id)),timeout=10).json()
 		if res["total"] == 0:
 			print("No bids.")
-		"""
-		try:
-			for i in res["results"]:
-				if i["local_currency_id"] == 3:
-					self.rate = i["currency"]["rate"]
-					break
-		except KeyError:
-			pass		
-		"""
+
+		if not self.rate:
+			try:
+				for i in res["results"]:
+					if i["local_currency_id"] == 3:
+						self.rate = i["currency"]["rate"]
+						break
+					else:
+						self.rate = 3
+			except KeyError:
+				pass		
+
 		for i in res["results"]:
 			if i["local_currency_id"] == 1:
 				i["local_price"] = round(i["local_price"]*self.rate)
