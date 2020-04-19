@@ -44,7 +44,7 @@ class novel_bot(commands.Cog):
 			product_url = "https://novelship.com/{}".format(i.get("name_slug"))
 			thumbnail_url = i.get("gallery")[0]
 			release_date = i.get("drop_date","-")
-			if release_date != "-":
+			if release_date != ("-" and None):
 				release_date=release_date.split("T")[0]
 			retail_price = i.get("cost","-")
 			highest_bid_id = i.get("highest_offer_id")
