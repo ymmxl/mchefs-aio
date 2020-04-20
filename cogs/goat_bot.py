@@ -27,30 +27,32 @@ class goat_bot(commands.Cog):
 			"params": "query={}&facetFilters=(status%3Aactive%2C%20status%3Aactive_edit)%2C%20()&page=0&hitsPerPage=20"
 			.format(kw)
 		}
-		r = requests.post(url=self.api_url, headers=headers, params=params, json=data)
-		output = json.loads(r.text)
-		image = output['hits'][0]['picture_url']
-		name = output['hits'][0]['name']
-		new_lowest_price_cents = int(output['hits'][0]['new_lowest_price_cents'] / 100)
-		maximum_offer = int(output['hits'][0]['maximum_offer_cents'] / 100)
-		minimum_offer = int(output['hits'][0]['minimum_offer_cents'] / 100)
-		url = 'https://www.goat.com/sneakers/' + output['hits'][0]['slug']
-		used_lowest_price_cents = int(output['hits'][0]['used_lowest_price_cents'] / 100)
-		want_count = output['hits'][0]['want_count']
-		want_count_three = output['hits'][0]['three_day_rolling_want_count']
+		output = requests.post(url=self.api_url, headers=headers, params=params, json=data).json()
+		if output["nbHits"] == 0:
+			await message.channel.send("Product not found. Please try other keywords.")
+		else:
+			image = output['hits'][0]['picture_url']
+			name = output['hits'][0]['name']
+			new_lowest_price_cents = int(output['hits'][0]['new_lowest_price_cents'] / 100)
+			maximum_offer = int(output['hits'][0]['maximum_offer_cents'] / 100)
+			minimum_offer = int(output['hits'][0]['minimum_offer_cents'] / 100)
+			url = 'https://www.goat.com/sneakers/' + output['hits'][0]['slug']
+			used_lowest_price_cents = int(output['hits'][0]['used_lowest_price_cents'] / 100)
+			want_count = output['hits'][0]['want_count']
+			want_count_three = output['hits'][0]['three_day_rolling_want_count']
 
-		d=dt.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
-		embed = discord.Embed(color=0xedf7f6)
-		embed.set_thumbnail(url=image)
-		embed.add_field(name="Product Name", value="[{}]({})".format(name, url), inline=False)
-		embed.add_field(name="Lowest Bid", value="${}".format(minimum_offer), inline=True)
-		embed.add_field(name="Highest Bid", value="${}".format(maximum_offer), inline=True)
-		embed.add_field(name="Used Lowest Price", value="${}".format(used_lowest_price_cents), inline=True)
-		embed.add_field(name="New Lowest Price", value="${}".format(new_lowest_price_cents), inline=True)
-		embed.add_field(name="Want Count in Last 3 Days", value="{}".format(want_count_three), inline=True)
-		embed.add_field(name="Total Want Count", value="{}".format(want_count), inline=True)
-		embed.set_footer(text="ymmxl Goat Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
-		await message.channel.send(embed=embed)
+			d=dt.utcnow().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore")).strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+			embed = discord.Embed(color=0xedf7f6)
+			embed.set_thumbnail(url=image)
+			embed.add_field(name="Product Name", value="[{}]({})".format(name, url), inline=False)
+			embed.add_field(name="Lowest Bid", value="${}".format(minimum_offer), inline=True)
+			embed.add_field(name="Highest Bid", value="${}".format(maximum_offer), inline=True)
+			embed.add_field(name="Used Lowest Price", value="${}".format(used_lowest_price_cents), inline=True)
+			embed.add_field(name="New Lowest Price", value="${}".format(new_lowest_price_cents), inline=True)
+			embed.add_field(name="Want Count in Last 3 Days", value="{}".format(want_count_three), inline=True)
+			embed.add_field(name="Total Want Count", value="{}".format(want_count), inline=True)
+			embed.set_footer(text="ymmxl Goat Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
+			await message.channel.send(embed=embed)
 
 def setup(client):
 	client.add_cog(goat_bot(client))
