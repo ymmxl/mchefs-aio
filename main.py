@@ -22,11 +22,13 @@ def main():
 	if not config.TOKEN:
 		config.TOKEN = os.getenv("TOKEN")
 	ext = ["cogs.stockx_bot","cogs.goat_bot","cogs.kw_bot","cogs.novel_bot"]
-	for i in ext:
+	for f in os.listdir("./cogs"):
 		try:
-			client.load_extension(i)
+			if f.endswith(.py):
+				#loads extension according to filenames sliced ".py"
+				client.load_extension("cogs.{}".format(f[:-3]))
 		except:
-			print("{} module failed to load.".format(i))
+			print("{} module failed to load.".format(f))
 	client.run(config.TOKEN)
 
 
