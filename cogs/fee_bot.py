@@ -8,14 +8,14 @@ class fee_bot(commands.Cog):
 		self.client = client
 	@commands.Cog.listener()
 	async def on_ready(self):
-		print('{} Goat module logged in!'.format(self.client.user.name))
+		print('{} Fee module logged in!'.format(self.client.user.name))
 
 	@commands.command(pass_context=True)
 	async def fee(self,message,*,kw:int or float):
 		#if not isinstance(message.channel, discord.DMChannel) or (message.channel.id != "554705872945938432"):
 		#if (not isinstance(message.channel, discord.DMChannel)):
 			#await message.channel.send("SBSS keke")
-		if (message.channel.id == 373407301006000130) or (isinstance(message.channel, discord.DMChannel)):
+		if (message.channel.id == 554705872945938432) or (isinstance(message.channel, discord.DMChannel)):
 			try:
 				lvl1 = kw-(round(9.5/100*kw,2))-round(3/100*kw,2)-30
 				lvl2 = round(kw-((9.0/100)*kw)-((3/100)*kw)-30,2)
