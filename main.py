@@ -23,7 +23,7 @@ def main():
 		config.TOKEN = os.getenv("TOKEN")
 	for f in os.listdir("./cogs"):
 		try:
-			if f.endswith(.py):
+			if f.endswith(".py"):
 				#loads extension according to filenames sliced ".py"
 				client.load_extension("cogs.{}".format(f[:-3]))
 		except:
