@@ -68,7 +68,8 @@ class utility_bot(commands.Cog):
 			await message.channel.send("Thank you. Proceed?")
 			proceed = await self.client.wait_for("message",check=check)
 			if proceed.content == "y":
-				c = self.client.get_channel(373407301006000130)
+				#c = self.client.get_channel(373407301006000130) test channel
+				c = self.client.get_channel(427497512698380288)
 				await c.send(embed=embed)
 				await message.channel.send("Updates posted successfully.")
 			else:
