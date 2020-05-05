@@ -91,12 +91,23 @@ class stockx_bot(commands.Cog):
 		embed.add_field(name="Last Sale", value="${}".format(last_sale), inline=True)
 		embed.add_field(name="Lowest Ask", value="${}, Size: {}".format(lowest_ask,lowest_ask_size), inline=True)
 		embed.add_field(name="Highest Bid", value="${}, Size: {}".format(highest_bid,highest_bid_size), inline=True)
+		#up to here is 7 fields. max is 25 fields
+		i = 7
+		embed2 = discord.Embed(color=4500277)
 		for i in available_sizes:
 			for j,k in i.items():
-				embed.add_field(name=j if j else "All", value=k, inline=True)
-		embed.set_footer(text="ymmxl StockX Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
+				if len(embed.fields) > 25:
+					embed2.add_field(name=j if j else "All", value=k, inline=True)
+				else:
+					embed.add_field(name=j if j else "All", value=k, inline=True)
 		
+		if len(embed2)!=0:		
+			embed2.set_footer(text="ymmxl StockX Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
+		else:
+			embed.set_footer(text="ymmxl StockX Bot v{} [{}]".format(config.BOT_VERSION,d),icon_url=config.ICON_URL)
 		await message.channel.send(embed=embed)
+		if len(embed2) != 0:
+			await message.channel.send(embed=embed2)
 
 def setup(client):
 	client.add_cog(stockx_bot(client))
