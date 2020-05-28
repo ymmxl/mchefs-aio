@@ -1,4 +1,4 @@
-import json, os, discord, requests, pytz,asyncio
+import json, os, discord, requests, pytz,asyncio,typing
 from datetime import datetime as dt
 from discord.ext import commands
 
@@ -11,7 +11,7 @@ class utility_bot(commands.Cog):
 		print('{} Utility module logged in!'.format(self.client.user.name))
 
 	@commands.command(pass_context=True)
-	async def fee(self,message,*,kw:int or float):
+	async def fee(self,message,*,kw:typing.Union[int,float]):
 		#if not isinstance(message.channel, discord.DMChannel) or (message.channel.id != "554705872945938432"):
 		#if (not isinstance(message.channel, discord.DMChannel)):
 			#await message.channel.send("SBSS keke")
