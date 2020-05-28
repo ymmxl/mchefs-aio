@@ -17,7 +17,7 @@ class utility_bot(commands.Cog):
 			#await message.channel.send("SBSS keke")
 		if (message.channel.id == 554705872945938432) or (isinstance(message.channel, discord.DMChannel)):
 			try:
-				lvl1 = kw-(round(9.5/100*kw,2))-round(3/100*kw,2)-30
+				lvl1 = round(kw-((9.5/100)*kw)-((3/100)*kw)-30,2)
 				lvl2 = round(kw-((9.0/100)*kw)-((3/100)*kw)-30,2)
 				lvl3 = round(kw-((8.5/100)*kw)-((3/100)*kw)-30,2)
 				lvl4 = round(kw-((8/100)*kw)-((3/100)*kw)-30,2)
