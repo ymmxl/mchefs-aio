@@ -1,0 +1,461 @@
+{
+    "hits": [{
+        "name": "Jordan 1 Mid Light Smoke Grey (GS)",
+        "brand": "Jordan",
+        "thumbnail_url": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey-GS.png?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1583988028",
+        "media": {
+            "imageUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey-GS.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1583988028",
+            "smallImageUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey-GS.png?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1583988028",
+            "thumbUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey-GS.png?fit=fill&bg=FFFFFF&w=140&h=100&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1583988028",
+            "gallery": [],
+            "hidden": false
+        },
+        "url": "air-jordan-1-mid-light-smoke-grey-gs",
+        "release_date": "2020-01-10",
+        "categories": ["Air Jordan", "One"],
+        "product_category": "sneakers",
+        "ticker_symbol": "JB-JO1MLSGLB",
+        "style_id": "554725-092",
+        "make": "Jordan 1 Mid",
+        "model": "Light Smoke Grey (GS)",
+        "short_description": "Air-Jordan-1-Mid-Light-Smoke-Grey-GS",
+        "gender": "child",
+        "colorway": "Light Smoke Grey/Black-White",
+        "price": 0,
+        "description": null,
+        "highest_bid": 140,
+        "total_dollars": 385291,
+        "lowest_ask": 116,
+        "last_sale": 150,
+        "sales_last_72": 381,
+        "deadstock_sold": 2631,
+        "quality_bid": 1,
+        "active": 1,
+        "new_release": null,
+        "featured": null,
+        "lock_selling": false,
+        "selling_countries": ["AD", "AE", "AG", "AL", "AR", "AS", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BM", "BR", "BS", "BW", "BZ", "CH", "CL", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "FI", "FJ", "FO", "GD", "GE", "GF", "GI", "GL", "GP", "GR", "GT", "GU", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IS", "JM", "JO", "JP", "KE", "KN", "KR", "KW", "KY", "KZ", "LC", "LI", "LS", "LT", "LU", "LV", "MA", "MC", "MO", "MP", "MQ", "MT", "MU", "MW", "MX", "MY", "MZ", "NC", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PF", "PH", "PL", "PR", "PW", "QA", "RE", "RO", "RS", "SA", "SC", "SE", "SG", "SI", "SK", "SN", "SV", "TC", "TH", "TW", "UY", "VA", "VE", "VI", "VN", "ZA", "CA", "FR", "GB", "GG", "JE", "US", "IN"],
+        "buying_countries": ["AD", "AE", "AG", "AI", "AL", "AM", "AO", "AR", "AS", "AT", "AU", "AW", "BA", "BB", "BE", "BF", "BG", "BH", "BI", "BJ", "BM", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "ER", "ET", "FI", "FJ", "FO", "GD", "GE", "GF", "GI", "GL", "GM", "GN", "GP", "GR", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IS", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LC", "LI", "LK", "LS", "LT", "LU", "LV", "MA", "MC", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MP", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NC", "NE", "NF", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PL", "PR", "PW", "PY", "QA", "RE", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SN", "SR", "ST", "SV", "SZ", "TC", "TD", "TG", "TH", "TJ", "TM", "TN", "TO", "TV", "TW", "TZ", "UA", "UG", "UY", "VA", "VC", "VE", "VG", "VI", "VN", "VU", "WF", "WS", "YE", "YT", "ZA", "ZM", "ZW", "AZ", "BN", "CD", "CG", "EG", "FM", "GA", "IT", "MD", "NA", "PT", "RU", "SM", "TR", "TT", "CA", "FR", "GB", "GG", "JE", "ES", "US", "XK", "IN"],
+        "traits": [{
+            "name": "Style",
+            "value": "554725-092",
+            "filterable": true,
+            "visible": true,
+            "highlight": true
+        }, {
+            "name": "Colorway",
+            "value": "Light Smoke Grey/Black-White",
+            "filterable": false,
+            "visible": true,
+            "highlight": true
+        }, {
+            "name": "Retail Price",
+            "value": 90,
+            "filterable": true,
+            "visible": true,
+            "highlight": false,
+            "format": "currency"
+        }, {
+            "name": "Release Date",
+            "value": "2020-01-10",
+            "filterable": true,
+            "visible": true,
+            "highlight": false,
+            "format": "date"
+        }],
+        "searchable_traits": {
+            "Style": "554725-092",
+            "Colorway": "Light Smoke Grey/Black-White",
+            "Retail Price": 90,
+            "Release Date": "2020-01-10"
+        },
+        "objectID": "761c0d5a-6051-4ab5-952d-c73d2592fd34",
+        "_highlightResult": {
+            "name": {
+                "value": "<em>Jordan</em> <em>1</em> <em>Mid</em> Light <em>Smoke</em> <em>Grey</em> (GS)",
+                "matchLevel": "full",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid", "smoke", "grey"]
+            },
+            "url": {
+                "value": "air-<em>jordan</em>-<em>1</em>-<em>mid</em>-light-<em>smoke</em>-<em>grey</em>-gs",
+                "matchLevel": "full",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid", "smoke", "grey"]
+            },
+            "categories": [{
+                "value": "Air <em>Jordan</em>",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan"]
+            }, {
+                "value": "One",
+                "matchLevel": "none",
+                "matchedWords": []
+            }],
+            "product_category": {
+                "value": "sneakers",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "ticker_symbol": {
+                "value": "JB-JO1MLSGLB",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "style_id": {
+                "value": "554725-092",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "short_description": {
+                "value": "Air-<em>Jordan</em>-<em>1</em>-<em>Mid</em>-Light-<em>Smoke</em>-<em>Grey</em>-GS",
+                "matchLevel": "full",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid", "smoke", "grey"]
+            },
+            "gender": {
+                "value": "child",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "colorway": {
+                "value": "Light <em>Smoke</em> <em>Grey</em>/Black-White",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["smoke", "grey"]
+            },
+            "searchable_traits": {
+                "Style": {
+                    "value": "554725-092",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                },
+                "Colorway": {
+                    "value": "Light <em>Smoke</em> <em>Grey</em>/Black-White",
+                    "matchLevel": "partial",
+                    "fullyHighlighted": false,
+                    "matchedWords": ["smoke", "grey"]
+                },
+                "Retail Price": {
+                    "value": "90",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                },
+                "Release Date": {
+                    "value": "2020-01-10",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                }
+            }
+        }
+    }, {
+        "name": "Jordan 1 Mid Light Smoke Grey",
+        "brand": "Jordan",
+        "thumbnail_url": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey.png?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1576130621",
+        "media": {
+            "imageUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey.png?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1576130621",
+            "smallImageUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey.png?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1576130621",
+            "thumbUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Light-Smoke-Grey.png?fit=fill&bg=FFFFFF&w=140&h=100&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1576130621",
+            "gallery": [],
+            "hidden": false
+        },
+        "url": "air-jordan-1-mid-light-smoke-grey",
+        "release_date": "2020-01-10",
+        "categories": ["Air Jordan", "One"],
+        "product_category": "sneakers",
+        "ticker_symbol": "AJ1M-LSG",
+        "style_id": "554724-092",
+        "make": "Jordan 1 Mid",
+        "model": "Light Smoke Grey",
+        "short_description": "Air-Jordan-1-Mid-Light-Smoke-Grey",
+        "gender": "men",
+        "colorway": "Light Smoke Grey/Black-White",
+        "price": 0,
+        "description": null,
+        "highest_bid": 225,
+        "total_dollars": 333993,
+        "lowest_ask": 122,
+        "last_sale": 133,
+        "sales_last_72": 359,
+        "deadstock_sold": 2005,
+        "quality_bid": 1,
+        "active": 1,
+        "new_release": null,
+        "featured": null,
+        "lock_selling": false,
+        "selling_countries": ["AD", "AE", "AG", "AL", "AR", "AS", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BM", "BR", "BS", "BW", "BZ", "CH", "CL", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "FI", "FJ", "FO", "GD", "GE", "GF", "GI", "GL", "GP", "GR", "GT", "GU", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IS", "JM", "JO", "JP", "KE", "KN", "KR", "KW", "KY", "KZ", "LC", "LI", "LS", "LT", "LU", "LV", "MA", "MC", "MO", "MP", "MQ", "MT", "MU", "MW", "MX", "MY", "MZ", "NC", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PF", "PH", "PL", "PR", "PW", "QA", "RE", "RO", "RS", "SA", "SC", "SE", "SG", "SI", "SK", "SN", "SV", "TC", "TH", "TW", "UY", "VA", "VE", "VI", "VN", "ZA", "CA", "FR", "GB", "GG", "JE", "US", "IN"],
+        "buying_countries": ["AD", "AE", "AG", "AI", "AL", "AM", "AO", "AR", "AS", "AT", "AU", "AW", "BA", "BB", "BE", "BF", "BG", "BH", "BI", "BJ", "BM", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "ER", "ET", "FI", "FJ", "FO", "GD", "GE", "GF", "GI", "GL", "GM", "GN", "GP", "GR", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IS", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LC", "LI", "LK", "LS", "LT", "LU", "LV", "MA", "MC", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MP", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NC", "NE", "NF", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PL", "PR", "PW", "PY", "QA", "RE", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SN", "SR", "ST", "SV", "SZ", "TC", "TD", "TG", "TH", "TJ", "TM", "TN", "TO", "TV", "TW", "TZ", "UA", "UG", "UY", "VA", "VC", "VE", "VG", "VI", "VN", "VU", "WF", "WS", "YE", "YT", "ZA", "ZM", "ZW", "AZ", "BN", "CD", "CG", "EG", "FM", "GA", "IT", "MD", "NA", "PT", "RU", "SM", "TR", "TT", "CA", "FR", "GB", "GG", "JE", "ES", "US", "XK", "IN"],
+        "traits": [{
+            "name": "Style",
+            "value": "554724-092",
+            "filterable": true,
+            "visible": true,
+            "highlight": true
+        }, {
+            "name": "Colorway",
+            "value": "Light Smoke Grey/Black-White",
+            "filterable": false,
+            "visible": true,
+            "highlight": true
+        }, {
+            "name": "Retail Price",
+            "value": 110,
+            "filterable": true,
+            "visible": true,
+            "highlight": false,
+            "format": "currency"
+        }, {
+            "name": "Release Date",
+            "value": "2020-01-10",
+            "filterable": true,
+            "visible": true,
+            "highlight": false,
+            "format": "date"
+        }],
+        "searchable_traits": {
+            "Style": "554724-092",
+            "Colorway": "Light Smoke Grey/Black-White",
+            "Retail Price": 110,
+            "Release Date": "2020-01-10"
+        },
+        "objectID": "786812bf-b916-440e-8b50-dffd2329c6d3",
+        "_highlightResult": {
+            "name": {
+                "value": "<em>Jordan</em> <em>1</em> <em>Mid</em> Light <em>Smoke</em> <em>Grey</em>",
+                "matchLevel": "full",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid", "smoke", "grey"]
+            },
+            "url": {
+                "value": "air-<em>jordan</em>-<em>1</em>-<em>mid</em>-light-<em>smoke</em>-<em>grey</em>",
+                "matchLevel": "full",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid", "smoke", "grey"]
+            },
+            "categories": [{
+                "value": "Air <em>Jordan</em>",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan"]
+            }, {
+                "value": "One",
+                "matchLevel": "none",
+                "matchedWords": []
+            }],
+            "product_category": {
+                "value": "sneakers",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "ticker_symbol": {
+                "value": "AJ1M-LSG",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "style_id": {
+                "value": "554724-092",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "short_description": {
+                "value": "Air-<em>Jordan</em>-<em>1</em>-<em>Mid</em>-Light-<em>Smoke</em>-<em>Grey</em>",
+                "matchLevel": "full",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid", "smoke", "grey"]
+            },
+            "gender": {
+                "value": "men",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "colorway": {
+                "value": "Light <em>Smoke</em> <em>Grey</em>/Black-White",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["smoke", "grey"]
+            },
+            "searchable_traits": {
+                "Style": {
+                    "value": "554724-092",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                },
+                "Colorway": {
+                    "value": "Light <em>Smoke</em> <em>Grey</em>/Black-White",
+                    "matchLevel": "partial",
+                    "fullyHighlighted": false,
+                    "matchedWords": ["smoke", "grey"]
+                },
+                "Retail Price": {
+                    "value": "110",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                },
+                "Release Date": {
+                    "value": "2020-01-10",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                }
+            }
+        }
+    }, {
+        "name": "Jordan 1 Mid Pink Quartz (GS)",
+        "brand": "Jordan",
+        "thumbnail_url": "https://stockx.imgix.net/Air-Jordan-1-Mid-Pink-Quartz-GS_01.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1585357692",
+        "media": {
+            "imageUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Pink-Quartz-GS_01.jpg?fit=fill&bg=FFFFFF&w=700&h=500&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1585357692",
+            "smallImageUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Pink-Quartz-GS_01.jpg?fit=fill&bg=FFFFFF&w=300&h=214&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1585357692",
+            "thumbUrl": "https://stockx.imgix.net/Air-Jordan-1-Mid-Pink-Quartz-GS_01.jpg?fit=fill&bg=FFFFFF&w=140&h=100&auto=format,compress&trim=color&q=90&dpr=2&updated_at=1585357692",
+            "gallery": [],
+            "hidden": false
+        },
+        "url": "air-jordan-1-mid-pink-quartz-gs",
+        "release_date": "2020-04-20",
+        "categories": ["Air Jordan", "One"],
+        "product_category": "sneakers",
+        "ticker_symbol": "JB-JO1MPQPD",
+        "style_id": "555112-603",
+        "make": "Jordan 1 Mid",
+        "model": "Pink Quartz (GS)",
+        "short_description": "Air-Jordan-1-Mid-Pink-Quartz-GS",
+        "gender": "child",
+        "colorway": "Pink Quartz/Dark Smoke Grey-White",
+        "price": 0,
+        "description": null,
+        "highest_bid": 182,
+        "total_dollars": 735850,
+        "lowest_ask": 120,
+        "last_sale": 150,
+        "sales_last_72": 216,
+        "deadstock_sold": 4956,
+        "quality_bid": 1,
+        "active": 1,
+        "new_release": null,
+        "featured": null,
+        "lock_selling": false,
+        "selling_countries": ["AD", "AE", "AG", "AL", "AR", "AS", "AT", "AU", "BA", "BB", "BE", "BG", "BH", "BM", "BR", "BS", "BW", "BZ", "CH", "CL", "CN", "CO", "CR", "CY", "CZ", "DE", "DK", "DM", "DO", "DZ", "EC", "EE", "FI", "FJ", "FO", "GD", "GE", "GF", "GI", "GL", "GP", "GR", "GT", "GU", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IS", "JM", "JO", "JP", "KE", "KN", "KR", "KW", "KY", "KZ", "LC", "LI", "LS", "LT", "LU", "LV", "MA", "MC", "MO", "MP", "MQ", "MT", "MU", "MW", "MX", "MY", "MZ", "NC", "NI", "NL", "NO", "NZ", "OM", "PA", "PE", "PF", "PH", "PL", "PR", "PW", "QA", "RE", "RO", "RS", "SA", "SC", "SE", "SG", "SI", "SK", "SN", "SV", "TC", "TH", "TW", "UY", "VA", "VE", "VI", "VN", "ZA", "CA", "FR", "GB", "GG", "JE", "US", "IN"],
+        "buying_countries": ["AD", "AE", "AG", "AI", "AL", "AM", "AO", "AR", "AS", "AT", "AU", "AW", "BA", "BB", "BE", "BF", "BG", "BH", "BI", "BJ", "BM", "BO", "BR", "BS", "BT", "BW", "BY", "BZ", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "ER", "ET", "FI", "FJ", "FO", "GD", "GE", "GF", "GI", "GL", "GM", "GN", "GP", "GR", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HU", "ID", "IE", "IL", "IS", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LC", "LI", "LK", "LS", "LT", "LU", "LV", "MA", "MC", "ME", "MG", "MH", "MK", "ML", "MN", "MO", "MP", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NC", "NE", "NF", "NG", "NI", "NL", "NO", "NP", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PL", "PR", "PW", "PY", "QA", "RE", "RO", "RS", "RW", "SA", "SB", "SC", "SE", "SG", "SI", "SK", "SL", "SN", "SR", "ST", "SV", "SZ", "TC", "TD", "TG", "TH", "TJ", "TM", "TN", "TO", "TV", "TW", "TZ", "UA", "UG", "UY", "VA", "VC", "VE", "VG", "VI", "VN", "VU", "WF", "WS", "YE", "YT", "ZA", "ZM", "ZW", "AZ", "BN", "CD", "CG", "EG", "FM", "GA", "IT", "MD", "NA", "PT", "RU", "SM", "TR", "TT", "CA", "FR", "GB", "GG", "JE", "ES", "US", "XK", "IN"],
+        "traits": [{
+            "name": "Style",
+            "value": "555112-603",
+            "filterable": true,
+            "visible": true,
+            "highlight": true
+        }, {
+            "name": "Colorway",
+            "value": "Pink Quartz/Dark Smoke Grey-White",
+            "filterable": false,
+            "visible": true,
+            "highlight": true
+        }, {
+            "name": "Retail Price",
+            "value": 80,
+            "filterable": true,
+            "visible": true,
+            "highlight": false,
+            "format": "currency"
+        }, {
+            "name": "Release Date",
+            "value": "2020-04-20",
+            "filterable": true,
+            "visible": true,
+            "highlight": false,
+            "format": "date"
+        }],
+        "searchable_traits": {
+            "Style": "555112-603",
+            "Colorway": "Pink Quartz/Dark Smoke Grey-White",
+            "Retail Price": 80,
+            "Release Date": "2020-04-20"
+        },
+        "objectID": "74ee9564-ff58-4b39-979e-4956418c4920",
+        "_highlightResult": {
+            "name": {
+                "value": "<em>Jordan</em> <em>1</em> <em>Mid</em> Pink Quartz (GS)",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid"]
+            },
+            "url": {
+                "value": "air-<em>jordan</em>-<em>1</em>-<em>mid</em>-pink-quartz-gs",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid"]
+            },
+            "categories": [{
+                "value": "Air <em>Jordan</em>",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan"]
+            }, {
+                "value": "One",
+                "matchLevel": "none",
+                "matchedWords": []
+            }],
+            "product_category": {
+                "value": "sneakers",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "ticker_symbol": {
+                "value": "JB-JO1MPQPD",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "style_id": {
+                "value": "555112-603",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "short_description": {
+                "value": "Air-<em>Jordan</em>-<em>1</em>-<em>Mid</em>-Pink-Quartz-GS",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["jordan", "1", "mid"]
+            },
+            "gender": {
+                "value": "child",
+                "matchLevel": "none",
+                "matchedWords": []
+            },
+            "colorway": {
+                "value": "Pink Quartz/Dark <em>Smoke</em> <em>Grey</em>-White",
+                "matchLevel": "partial",
+                "fullyHighlighted": false,
+                "matchedWords": ["smoke", "grey"]
+            },
+            "searchable_traits": {
+                "Style": {
+                    "value": "555112-603",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                },
+                "Colorway": {
+                    "value": "Pink Quartz/Dark <em>Smoke</em> <em>Grey</em>-White",
+                    "matchLevel": "partial",
+                    "fullyHighlighted": false,
+                    "matchedWords": ["smoke", "grey"]
+                },
+                "Retail Price": {
+                    "value": "80",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                },
+                "Release Date": {
+                    "value": "2020-04-20",
+                    "matchLevel": "none",
+                    "matchedWords": []
+                }
+            }
+        }
+    }],
+    "nbHits": 6,
+    "page": 0,
+    "nbPages": 2,
+    "hitsPerPage": 3,
+    "exhaustiveNbHits": true,
+    "query": "jordan 1 mid smoke grey",
+    "params": "query=jordan 1 mid smoke grey&hitsPerPage=3",
+    "processingTimeMS": 3
+}

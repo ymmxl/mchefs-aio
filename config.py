@@ -1,6 +1,6 @@
 # BOT DETAILS
 BOT_PREFIX = "!"
-BOT_VERSION = "2.3.1"
+BOT_VERSION = "2.4"
 ICON_URL = "https://i.imgur.com/z1W5pwg.png"
 
 

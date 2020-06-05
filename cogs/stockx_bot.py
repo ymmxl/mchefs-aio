@@ -1,4 +1,4 @@
-import json, os, discord, requests,pytz
+import json, os, discord, requests,pytz,re
 from datetime import datetime as dt
 from discord.ext import commands
 import config
@@ -10,8 +10,23 @@ class stockx_bot(commands.Cog):
 	@commands.Cog.listener()
 	async def on_ready(self):
 		print("{} StockX module logged in!".format(self.client.user.name))
+
+	def filter(self,name,kw):
+		match = None
+		if any(re.findall(k.lower(),name.lower()) for k in kw):
+			match = False
+		else:
+			match = True
+		return match
+		
 	@commands.command(pass_context=True)
 	async def stockx(self,message,*,kw:str):
+		if "-" in kw:
+			q = kw.split("-")[0]
+			neg = re.findall(r"-(\w+)",kw)
+		else:
+			q = kw
+			neg = None
 		s = requests.session()
 		s.headers.update(
 		{
@@ -31,10 +46,23 @@ class stockx_bot(commands.Cog):
 		}
 
 		json_payload = {
-			"params": "query={}&hitsPerPage=1".format(kw)
+			"params": "query={}&hitsPerPage=3".format(kw)
 		}
 		r = s.post(url=self.api_url, params=payload, json=json_payload)
-		output = json.loads(r.text)
+		output = r.json()
+		if neg:
+			for index,i in enumerate(output["hits"]):
+				j = self.filter(i["name"],neg)
+				if j:
+					print("product name: {}".format(i["name"]))
+					z = index
+					break
+			if z:
+				p = output["hits"][z]
+			else:
+				p = output["hits"][0]
+		else:
+			p = output["hits"][0]
 
 		product_name = ""
 		thumbnail_url = ""
@@ -47,16 +75,16 @@ class stockx_bot(commands.Cog):
 		last_sale = ""
 		retail_price = ""
 		try:
-			product_name = output["hits"][0]["name"]
-			thumbnail_url = output["hits"][0]["thumbnail_url"]
-			object_id = output["hits"][0]["objectID"]
-			product_url = self.base_url + output["hits"][0]["url"]
-			release_date = output["hits"][0]["release_date"]
-			sku = output["hits"][0]["style_id"]
-			highest_bid = output["hits"][0]["highest_bid"]
-			lowest_ask = output["hits"][0]["lowest_ask"]
-			last_sale = output["hits"][0]["last_sale"]
-			retail_price = output["hits"][0]["searchable_traits"]["Retail Price"]
+			product_name = p["name"]
+			thumbnail_url = p["thumbnail_url"]
+			object_id = p["objectID"]
+			product_url = self.base_url + p["url"]
+			release_date = p["release_date"]
+			sku = p["style_id"]
+			highest_bid = p["highest_bid"]
+			lowest_ask = p["lowest_ask"]
+			last_sale = p["last_sale"]
+			retail_price = p["searchable_traits"]["Retail Price"]
 		except KeyError:
 			pass
 		except IndexError:
@@ -95,7 +123,7 @@ class stockx_bot(commands.Cog):
 		embed2 = discord.Embed(color=4500277)
 		for i in available_sizes:
 			for j,k in i.items():
-				print(len(embed.fields))
+				#print(len(embed.fields))
 				if len(embed.fields) > 24:
 					embed2.add_field(name=j if j else "All", value=k, inline=True)
 				else:
@@ -108,6 +136,5 @@ class stockx_bot(commands.Cog):
 		await message.channel.send(embed=embed)
 		if len(embed2) != 0:
 			await message.channel.send(embed=embed2)
-
 def setup(client):
 	client.add_cog(stockx_bot(client))
