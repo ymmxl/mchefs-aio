@@ -24,10 +24,9 @@ class novel_bot(commands.Cog):
 		"if-none-match":"""W/"27-ZQCF16t6JNv+dx6atp1EapVHMD4\""""
 		}
 		r = requests.get("https://free.currconv.com/api/v7/convert?q=SGD_MYR&compact=ultra&apiKey=469f69ca5e89bfc25989",headers=h)
-		if r.status_code != 200：
+		if r.status_code != 200:
 			print("Failed to get currency rates: STATUS[{}]".format(r.status_code))
-		elif:
-			r.json().get("SGD_MYR"):
+		elif r.json().get("SGD_MYR"):
 			self.rate = r["SGD_MYR"]
 		else:
 			self.rate = 3
