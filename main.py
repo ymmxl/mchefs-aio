@@ -26,8 +26,9 @@ def main():
 			if f.endswith(".py"):
 				#loads extension according to filenames sliced ".py"
 				client.load_extension("cogs.{}".format(f[:-3]))
-		except:
+		except Exception as e:
 			print("{} module failed to load.".format(f))
+			print(e)
 	client.run(config.TOKEN)
 
 
