@@ -7,6 +7,7 @@ import config
 if not config.DEBUG:
 	if not config.HEROKU_DB_URL:
 		config.HEROKU_DB_URL = os.getenv("DATABASE_URL")
+		
 class kw_bot(commands.Cog):
 	def __init__(self,client):
 		self.client = client
