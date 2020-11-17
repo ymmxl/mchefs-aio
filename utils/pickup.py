@@ -109,7 +109,7 @@ class Pickup:
 			print(r.text)
 		return v
 
-	def submit(f):
+	def submit(self,f):
 		f = json.dumps(f)
 		self.s.headers.update({
 			"accept": "application/json, text/plain, */*",
