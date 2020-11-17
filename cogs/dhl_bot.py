@@ -230,6 +230,7 @@ class dhl_bot(commands.Cog):
 			return
 		else:
 			profiles = self.fetch(discord_id)
+			f = {}
 			for j in profiles:
 				for i in j:
 					if i["profile_name"] == profile_name:
@@ -248,7 +249,11 @@ class dhl_bot(commands.Cog):
 						"city":i["city"],
 						"state":i["state"]
 						}
-			await message.channel.send(">>> Preview:\n```json\n{}```\nProceed? (y/n)".format(json.dumps(f,indent=4)))
+			if f:
+				await message.channel.send(">>> Preview:\n```json\n{}```\nProceed? (y/n)".format(json.dumps(f,indent=4)))
+			else:
+				await message.channel.send("Profile not found or something went wrong.")
+				return
 			try:
 				confirm = await self.client.wait_for("message",check=check,timeout=100.0)
 			except asyncio.TimeoutError:
