@@ -140,7 +140,7 @@ class Pickup:
 			if not v3:
 				self.error = "Error validate_awbill"
 				return self.complete,self.error		
-			v4 = self.validate.address()
+			v4 = self.validate_address()
 			if not v4:
 				self.error = "Error validate_adress"
 				return self.complete,self.error		
