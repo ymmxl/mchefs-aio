@@ -25,7 +25,7 @@ def dbCreate(sql,isLocal):
 			value = True
 			c.close()
 	except (Exception, psycopg2.DatabaseError) as e:
-		print("Database error.")
+		print("dbCreate error.")
 		print(e)
 		s.rollback()
 		c.close()
@@ -45,7 +45,7 @@ def dbEntry(sql,data,isLocal,f_id=""):
 			c.close()
 			return value
 	except (Exception, psycopg2.DatabaseError) as e:
-		print("Database error.")
+		print("dbEntry error.")
 		print(e)
 		s.rollback()
 		c.close()
@@ -64,7 +64,7 @@ def dbFetch(sql,data,isLocal):
 			c.close()
 			return value
 	except (Exception, psycopg2.DatabaseError) as e:
-		print("Database error.")
+		print("dbFetch error.")
 		print(e)
 		s.rollback()
 		c.close()

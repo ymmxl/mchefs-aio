@@ -13,36 +13,36 @@ class dhl_bot(commands.Cog):
 		self.client = client
 		self.init()
 	def init(self):
-			ss = """
-				CREATE TABLE IF NOT EXISTS add_list(
-					id SERIAL PRIMARY KEY,
-					profile_name text NOT NULL,
-					name text NOT NULL,
-					email text NOT NULL,
-					phone text NOT NULL,
-					add1 text NOT NULL
-					CHECK(
-						LENGTH(add1) <= 35
-					),
-					add2 text
-					CHECK(
-						LENGTH(add2) <= 35
-					),
-					postcode text NOT NULL,
-					city text NOT NULL,
-					state text NOT NULL
-				)"""
-			ss2 = """
-				CREATE TABLE IF NOT EXISTS user_list(
-					id SERIAL PRIMARY KEY,
-					discord_id integer NOT NULL,
-					add_id integer,
-					FOREIGN KEY (add_id) REFERENCES add_list (id)
-				)"""
-			t1 = dbCreate(ss,config.DEBUG)
-			t2 = dbCreate(ss2,config.DEBUG)
-			if (t1 and t2):
-				print("DATABASE successfully initialized.")
+		ss = """
+			CREATE TABLE IF NOT EXISTS add_list(
+				id SERIAL PRIMARY KEY,
+				profile_name text NOT NULL,
+				name text NOT NULL,
+				email text NOT NULL,
+				phone text NOT NULL,
+				add1 text NOT NULL
+				CHECK(
+					LENGTH(add1) <= 35
+				),
+				add2 text
+				CHECK(
+					LENGTH(add2) <= 35
+				),
+				postcode text NOT NULL,
+				city text NOT NULL,
+				state text NOT NULL
+			)"""
+		ss2 = """
+			CREATE TABLE IF NOT EXISTS user_list(
+				id SERIAL PRIMARY KEY,
+				discord_id integer NOT NULL,
+				add_id integer,
+				FOREIGN KEY (add_id) REFERENCES add_list (id)
+			)"""
+		t1 = dbCreate(ss,config.DEBUG)
+		t2 = dbCreate(ss2,config.DEBUG)
+		if (t1 and t2):
+			print("DATABASE successfully initialized.")
 
 	@commands.Cog.listener()
 	async def on_ready(self):
