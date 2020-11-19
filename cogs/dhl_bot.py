@@ -7,9 +7,6 @@ import config
 from utils.db_utils import dbCreate, dbEntry, dbFetch
 from utils.pickup import Pickup
 
-if not config.DEBUG:
-	if not config.HEROKU_DB_URL:
-		config.HEROKU_DB_URL = os.getenv("DATABASE_URL")
 
 class dhl_bot(commands.Cog):
 	def __init__(self,client):
@@ -44,8 +41,8 @@ class dhl_bot(commands.Cog):
 					add_id integer,
 					FOREIGN KEY (add_id) REFERENCES add_list (id)
 				)"""
-			t1 = dbCreate(ss,True)
-			t2 = dbCreate(ss2,True)
+			t1 = dbCreate(ss,config.DEBUG)
+			t2 = dbCreate(ss2,config.DEBUG)
 			if (t1 and t2):
 				print("DATABASE successfully initialized.")
 
@@ -57,10 +54,10 @@ class dhl_bot(commands.Cog):
 	def save(self,d,discord_id):
 		v = False
 		add_sql = """INSERT INTO add_list(profile_name,name,email,phone,add1,add2,postcode,city,state) VALUES (?,?,?,?,?,?,?,?,?)"""
-		entry1,add_id = dbEntry(add_sql,(d["profile_name"],d["name"],d["email"],d["phone"],d["add1"],d["add2"],d["postcode"],d["city"],d["state"]),isLocal=True,f_id=True)
+		entry1,add_id = dbEntry(add_sql,(d["profile_name"],d["name"],d["email"],d["phone"],d["add1"],d["add2"],d["postcode"],d["city"],d["state"]),isLocal=config.DEBUG,f_id=True)
 		if add_id:
 			user_sql = """INSERT INTO user_list(discord_id,add_id) VALUES (?,?)"""
-			entry2 = dbEntry(user_sql,(discord_id,add_id),isLocal=True)
+			entry2 = dbEntry(user_sql,(discord_id,add_id),isLocal=config.DEBUG)
 			if (entry1 and entry2) == "UPDATED":
 				print("Successfully added add_list and user_list")
 				v = True
@@ -68,12 +65,12 @@ class dhl_bot(commands.Cog):
 
 	def fetch(self,discord_id):
 		f_sql = """SELECT add_id FROM user_list WHERE discord_id=?"""
-		add_ids = dbFetch(f_sql,(discord_id,),True)
+		add_ids = dbFetch(f_sql,(discord_id,),config.DEBUG)
 		p = []
 		if add_ids:
 			for i in add_ids:
 				a_sql = """SELECT * FROM add_list WHERE id=?"""
-				result = dbFetch(a_sql,(i["add_id"],),True)
+				result = dbFetch(a_sql,(i["add_id"],),config.DEBUG)
 				p.append(result)
 		return p
 

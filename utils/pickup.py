@@ -230,8 +230,10 @@ class Pickup:
 			r6 = self.submit(f)
 			if not r6:
 				self.error = "Error submit"
+				print("Error submit")
 				return self.complete,self.error	
 			elif r6.status_code == 200:
+				print("Successfully scheduled\n{}".format(r6.text))
 				self.complete = r6.text
 				return self.complete,self.error
 

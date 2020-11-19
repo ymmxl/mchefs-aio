@@ -1,12 +1,15 @@
 import os,sqlite3,psycopg2
 
 DEFAULT_PATH = os.path.join(os.path.dirname(__file__),'database.sqlite3')
+if not config.DEBUG:
+	if not config.HEROKU_DB_URL:
+		config.HEROKU_DB_URL = os.getenv("DATABASE_URL")
 
 def dbConnect(isLocal):
 	if isLocal:
 		conn = sqlite3.connect(DEFAULT_PATH)
 	else:
-		conn = psycopg2.connect(DATABASE_URL,sslmode = "require")
+		conn = psycopg2.connect(config.HEROKU_DB_URL,sslmode = "require")
 		conn.set_isolation_level(extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 	return conn
 
