@@ -22,13 +22,11 @@ class dhl_bot(commands.Cog):
 					phone text NOT NULL,
 					add1 text NOT NULL
 					CHECK(
-						typeof("add1") = "text" AND
-						length("add1") <= 35
+						LENGTH(add1) <= 35
 					),
 					add2 text
 					CHECK(
-						typeof("add2") = "text" AND
-						length("add2") <= 35
+						LENGTH(add2) <= 35
 					),
 					postcode text NOT NULL,
 					city text NOT NULL,
