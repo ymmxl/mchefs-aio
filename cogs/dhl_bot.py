@@ -51,10 +51,10 @@ class dhl_bot(commands.Cog):
 
 	def save(self,d,discord_id):
 		v = False
-		add_sql = """INSERT INTO add_list(profile_name,name,email,phone,add1,add2,postcode,city,state) VALUES (?,?,?,?,?,?,?,?,?) RETURNING id"""
+		add_sql = """INSERT INTO add_list(profile_name,name,email,phone,add1,add2,postcode,city,state) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id"""
 		entry1,add_id = dbEntry(add_sql,(d["profile_name"],d["name"],d["email"],d["phone"],d["add1"],d["add2"],d["postcode"],d["city"],d["state"]),isLocal=config.DEBUG,f_id=True)
 		if add_id:
-			user_sql = """INSERT INTO user_list(discord_id,add_id) VALUES (?,?)"""
+			user_sql = """INSERT INTO user_list(discord_id,add_id) VALUES (%s,%s)"""
 			entry2 = dbEntry(user_sql,(discord_id,add_id),isLocal=config.DEBUG)
 			if (entry1 and entry2) == "UPDATED":
 				print("Successfully added add_list and user_list")
@@ -62,12 +62,12 @@ class dhl_bot(commands.Cog):
 		return	v
 
 	def fetch(self,discord_id):
-		f_sql = """SELECT add_id FROM user_list WHERE discord_id=?"""
+		f_sql = """SELECT add_id FROM user_list WHERE discord_id=%s"""
 		add_ids = dbFetch(f_sql,(discord_id,),config.DEBUG)
 		p = []
 		if add_ids:
 			for i in add_ids:
-				a_sql = """SELECT * FROM add_list WHERE id=?"""
+				a_sql = """SELECT * FROM add_list WHERE id=%s"""
 				result = dbFetch(a_sql,(i["add_id"],),config.DEBUG)
 				p.append(result)
 		return p
