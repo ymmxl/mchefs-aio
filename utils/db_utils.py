@@ -40,7 +40,7 @@ def dbEntry(sql,data,isLocal,f_id=""):
 			c.execute(sql,data)
 			value = "UPDATED"
 			if f_id:
-				i = c.fetchone()["id"]
+				i = c.fetchone()
 				return value,i
 			c.close()
 			return value

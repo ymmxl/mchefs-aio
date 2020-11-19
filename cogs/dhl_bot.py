@@ -55,7 +55,7 @@ class dhl_bot(commands.Cog):
 		entry1,add_id = dbEntry(add_sql,(d["profile_name"],d["name"],d["email"],d["phone"],d["add1"],d["add2"],d["postcode"],d["city"],d["state"]),isLocal=config.DEBUG,f_id=True)
 		if add_id:
 			user_sql = """INSERT INTO user_list(discord_id,add_id) VALUES (%s,%s)"""
-			entry2 = dbEntry(user_sql,(discord_id,add_id),isLocal=config.DEBUG)
+			entry2 = dbEntry(user_sql,(discord_id,add_id[0]),isLocal=config.DEBUG)
 			if (entry1 and entry2) == "UPDATED":
 				print("Successfully added add_list and user_list")
 				v = True
