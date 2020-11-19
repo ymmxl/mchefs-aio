@@ -19,7 +19,7 @@ def dbCreate(sql,isLocal):
 	try:
 		s = dbConnect(isLocal)
 		with s:
-			c = s.cursor()
+			c = s.cursor(cursor_factory=psycopg2.extras.DictCursor)
 			c.execute(sql)
 			value = True
 			c.close()
@@ -35,7 +35,7 @@ def dbEntry(sql,data,isLocal,f_id=""):
 	try:
 		s = dbConnect(isLocal)
 		with s:
-			c = s.cursor()
+			c = s.cursor(cursor_factory=psycopg2.extras.DictCursor)
 			c.execute(sql,data)
 			value = "UPDATED"
 			if f_id:
@@ -56,7 +56,7 @@ def dbFetch(sql,data,isLocal):
 		s = dbConnect(isLocal)
 		with s:
 			s.row_factory = sqlite3.Row
-			c = s.cursor()
+			c = s.cursor(cursor_factory=psycopg2.extras.DictCursor)
 			c.execute(sql,data)
 			value = c.fetchall()
 			c.close()
