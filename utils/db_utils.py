@@ -36,11 +36,11 @@ def dbEntry(sql,data,isLocal,f_id=""):
 	try:
 		s = dbConnect(isLocal)
 		with s:
-			c = s.cursor()
+			c = s.cursor(cursor_factory=psycopg2.extras.DictCursor)
 			c.execute(sql,data)
 			value = "UPDATED"
 			if f_id:
-				i = c.lastrowid
+				i = c.fetchone()["id"]
 				return value,i
 			c.close()
 			return value

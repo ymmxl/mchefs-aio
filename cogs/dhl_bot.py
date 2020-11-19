@@ -51,7 +51,7 @@ class dhl_bot(commands.Cog):
 
 	def save(self,d,discord_id):
 		v = False
-		add_sql = """INSERT INTO add_list(profile_name,name,email,phone,add1,add2,postcode,city,state) VALUES (?,?,?,?,?,?,?,?,?)"""
+		add_sql = """INSERT INTO add_list(profile_name,name,email,phone,add1,add2,postcode,city,state) VALUES (?,?,?,?,?,?,?,?,?) RETURNING id"""
 		entry1,add_id = dbEntry(add_sql,(d["profile_name"],d["name"],d["email"],d["phone"],d["add1"],d["add2"],d["postcode"],d["city"],d["state"]),isLocal=config.DEBUG,f_id=True)
 		if add_id:
 			user_sql = """INSERT INTO user_list(discord_id,add_id) VALUES (?,?)"""
