@@ -55,7 +55,8 @@ def dbFetch(sql,data,isLocal):
 	try:
 		s = dbConnect(isLocal)
 		with s:
-			s.row_factory = sqlite3.Row
+			if isLocal:
+				s.row_factory = sqlite3.Row
 			c = s.cursor(cursor_factory=psycopg2.extras.DictCursor)
 			c.execute(sql,data)
 			value = c.fetchall()
