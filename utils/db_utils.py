@@ -1,5 +1,5 @@
 import os,sqlite3,psycopg2
-
+import config
 DEFAULT_PATH = os.path.join(os.path.dirname(__file__),'database.sqlite3')
 if not config.DEBUG:
 	if not config.HEROKU_DB_URL:
