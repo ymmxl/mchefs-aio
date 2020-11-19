@@ -15,7 +15,7 @@ class dhl_bot(commands.Cog):
 	def init(self):
 			ss = """
 				CREATE TABLE IF NOT EXISTS add_list(
-					id integer PRIMARY KEY,
+					id SERIAL PRIMARY KEY,
 					profile_name text NOT NULL,
 					name text NOT NULL,
 					email text NOT NULL,
@@ -34,7 +34,7 @@ class dhl_bot(commands.Cog):
 				)"""
 			ss2 = """
 				CREATE TABLE IF NOT EXISTS user_list(
-					id integer PRIMARY KEY,
+					id SERIAL PRIMARY KEY,
 					discord_id integer NOT NULL,
 					add_id integer,
 					FOREIGN KEY (add_id) REFERENCES add_list (id)
