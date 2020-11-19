@@ -1,5 +1,6 @@
 import os,sqlite3,psycopg2
 import config
+import psycopg2.extras
 from psycopg2 import connect, extensions, sql
 DEFAULT_PATH = os.path.join(os.path.dirname(__file__),'database.sqlite3')
 if not config.DEBUG:
