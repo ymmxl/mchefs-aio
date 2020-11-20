@@ -13,7 +13,7 @@ class novel_bot(commands.Cog):
 	@commands.Cog.listener()
 	async def on_ready(self):
 		#TASKS LOOP CANNOT BE PROMPTED AFTER !RELOAD COMMAND#
-		self.get_rates.start()
+		#self.get_rates.start()
 		print("{} Novelship module logged in!".format(self.client.user.name))
 	# @tasks.loop(hours=12)
 	# async def get_rates(self):
