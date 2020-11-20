@@ -3,6 +3,7 @@ from psycopg2 import connect, extensions, sql
 #from discord.ext.commands import Bot
 from datetime import datetime as dt
 from discord.ext import commands
+#import config_local as config
 import config
 from utils.db_utils import dbCreate, dbEntry, dbFetch
 from utils.pickup import Pickup
@@ -35,9 +36,9 @@ class dhl_bot(commands.Cog):
 		ss2 = """
 			CREATE TABLE IF NOT EXISTS user_list(
 				id SERIAL PRIMARY KEY,
-				discord_id integer NOT NULL,
-				add_id integer,
-				FOREIGN KEY (add_id) REFERENCES add_list (id)
+				discord_id bigint NOT NULL,
+				add_id integer, 
+				FOREIGN KEY (add_id) REFERENCES add_list(id)
 			)"""
 		t1 = dbCreate(ss,config.DEBUG)
 		t2 = dbCreate(ss2,config.DEBUG)
@@ -53,9 +54,12 @@ class dhl_bot(commands.Cog):
 		v = False
 		add_sql = """INSERT INTO add_list(profile_name,name,email,phone,add1,add2,postcode,city,state) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id"""
 		entry1,add_id = dbEntry(add_sql,(d["profile_name"],d["name"],d["email"],d["phone"],d["add1"],d["add2"],d["postcode"],d["city"],d["state"]),isLocal=config.DEBUG,f_id=True)
+		print(add_id)
+		print(entry1)
 		if add_id:
+			aid = add_id[0]
 			user_sql = """INSERT INTO user_list(discord_id,add_id) VALUES (%s,%s)"""
-			entry2 = dbEntry(user_sql,(discord_id,add_id[0]),isLocal=config.DEBUG)
+			entry2 = dbEntry(user_sql,(discord_id,aid),isLocal=config.DEBUG)
 			if (entry1 and entry2) == "UPDATED":
 				print("Successfully added add_list and user_list")
 				v = True

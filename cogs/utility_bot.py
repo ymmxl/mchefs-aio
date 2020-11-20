@@ -75,6 +75,15 @@ class utility_bot(commands.Cog):
 			else:
 				await message.channel.send("Aborted.")
 
+	# @commands.command(pass_context=True)
+	# async def purge(self,message,amount = 1):
+	# 	if not message.channel.type is discord.ChannelType.private:
+	# 		return
+	# 	else:
+	# 		#await message.delete()
+	# 		async for msg in message.channel.history(limit=amount):
+	# 			await msg.delete()
+	# 		#await message.purge(limit = amount)
 
 def setup(client):
 	client.add_cog(utility_bot(client))

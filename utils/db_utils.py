@@ -1,4 +1,5 @@
 import os,sqlite3,psycopg2
+#import config_local as config
 import config
 import psycopg2.extras
 from psycopg2 import connect, extensions, sql
@@ -9,10 +10,14 @@ if not config.DEBUG:
 
 def dbConnect(isLocal):
 	if isLocal:
-		conn = sqlite3.connect(DEFAULT_PATH)
+		conn = psycopg2.connect(user = config.DB_USER, 
+		password = config.DB_PASSWORD,
+		host = config.DB_HOST,
+		port = config.DB_PORT,
+		database = config.DB_NAME)
 	else:
 		conn = psycopg2.connect(config.HEROKU_DB_URL,sslmode = "require")
-		conn.set_isolation_level(extensions.ISOLATION_LEVEL_AUTOCOMMIT)
+	conn.set_isolation_level(extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 	return conn
 
 def dbCreate(sql,isLocal):
@@ -56,8 +61,6 @@ def dbFetch(sql,data,isLocal):
 	try:
 		s = dbConnect(isLocal)
 		with s:
-			if isLocal:
-				s.row_factory = sqlite3.Row
 			c = s.cursor(cursor_factory=psycopg2.extras.DictCursor)
 			c.execute(sql,data)
 			value = c.fetchall()
