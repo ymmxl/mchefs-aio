@@ -81,7 +81,7 @@ class Pickup:
 				print("city and postcode does not match please try again")
 			else:
 				print("Address validated")
-				v=True
+				v=r.json()
 		elif r.status_code == 404:
 			print("Wrong city or postcode")
 		return v
@@ -143,12 +143,14 @@ class Pickup:
 			v4 = self.validate_address()
 			if not v4:
 				self.error = "Error validate_adress"
-				return self.complete,self.error		
+				return self.complete,self.error	
+			countryDivisionCode = v4["countryDivisionCode"]	
+			serviceAreaCode = v4["serviceAreaCode"]
 			v5 = self.validate_cutoff()
 			if not v5:
 				self.error = "Error validate_cutoff"
 				return self.complete,self.error				
-			serviceAreaCode = v5["serviceAreaCode"]
+			#serviceAreaCode = v5["serviceAreaCode"]
 			package = int(self.profile["package"])
 			weight = 1.5*package
 			awbill = self.profile["awbill"]
@@ -191,7 +193,7 @@ class Pickup:
 						"postCode": postcode,
 						"cityName": city,
 						"countryDivisionName": state,
-						"countryDivisionCode": "79",
+						"countryDivisionCode": countryDivisionCode,
 						"countryDivisionTypeCode": "S",
 						"addressType": "RESIDENTIAL",
 						"serviceAreaCode": serviceAreaCode,
