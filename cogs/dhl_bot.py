@@ -218,11 +218,20 @@ class dhl_bot(commands.Cog):
 		awbill = args[1].replace(" ","")
 		package = args[4]
 		try:
-			date = args[2] if dt.strptime(args[2],"%Y-%m-%d") else None
+			if args[2].lower() == "today":
+				date = dt.today().strftime("%Y-%m-%d")
+			elif dt.strptime(args[2],"%Y-%m-%d"):
+				date = dt.strptime(args[2],"%Y-%m-%d").strftime("%Y-%m-%d")
+			else:
+				date = None
+		except Exception as e:
+			print("Error parsing date: {}".format(e))
+			date = None
+
+		try:
 			time = args[3] if dt.strptime(args[3],"%H:%M") else None
 		except Exception as e:
-			print("Error parsing date/time: {}".format(e))
-			date = None
+			print("Error parsing time: {}".format(e))
 			time = None
 		if not all([profile_name,awbill,date,time]):
 			await message.channel.send("> Error in command please check your input or `!help dhl_pickup`")
