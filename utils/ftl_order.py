@@ -68,7 +68,7 @@ class Order:
 
 
 if __name__ == "__main__":
-	n = ["2494924042821100986494","2494924042821100987327"]
+	n = ["xxx","xxx"]
 	t = Order(n)
 	q = t.process()
 	for i in q:
