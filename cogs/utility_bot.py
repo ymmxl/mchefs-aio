@@ -105,6 +105,7 @@ class utility_bot(commands.Cog):
 		for i in message_list:
 			if i.embeds:
 				for t in i.embeds:
+					t = t.to_dict()
 					if "QBot FTL{}".format(region) in t["footer"]["text"]:
 						if t["title"] == "Successfully Checked Out":
 						#print(t.to_dict())
