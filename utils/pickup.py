@@ -13,7 +13,7 @@ class Pickup:
 		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36",
 		"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
 		"accept-encoding":"gzip, deflate, br",
-		"accept-language":"en-GB,en-US;q=0.9,en;q=0.8"		
+		"accept-language":"en-GB,en-US;q=0.9,en;q=0.8"
 			})
 		try:
 			r = self.s.get("https://mydhl.express.dhl/my/en/schedule-pickup.html")
@@ -110,6 +110,7 @@ class Pickup:
 		return v
 
 	def submit(self,f):
+		r = None
 		f = json.dumps(f)
 		self.s.headers.update({
 			"accept": "application/json, text/plain, */*",
@@ -118,15 +119,17 @@ class Pickup:
 			})
 		try:
 			r = self.s.post("https://mydhl.express.dhl/api/shipment/pickup/standalone",data = f)
+			print(r.status_code)
+			print(r.text)
 		except RequestException as e:
 			print("Error submit: {}".format(e))
 			return None
 		return r
 
 	def process(self):
-		if not all(self.profile.get(i) for i in ["name","phone","email","eTime","awbill","date","add1","add2","city","postcode","state","package"]):
-			self.error = "Incomplete profile"
-			return self.complete,self.error
+		# if not all(self.profile.get(i) for i in ["name","phone","email","eTime","awbill","date","add1","add2","city","postcode","state","package"]):
+		# 	self.error = "Incomplete profile"
+		# 	return self.complete,self.error
 		with self.s:
 			r1 = self.get_page()
 			if not r1:
@@ -185,6 +188,7 @@ class Pickup:
 					"name": name,
 					"company": "",
 					"contactKey": "00",
+					"businessContactType": "PR",
 					"pickupAddress": {
 						"countryCode": "MY",
 						"addressLine1": add1,
@@ -238,7 +242,13 @@ class Pickup:
 				print("Successfully scheduled\n{}".format(r6.text))
 				self.complete = r6.text
 				return self.complete,self.error
+			else:
+				print("Failed submit schedule.")
+				print(r6.status_code)
+				print(r6.text)
+
 
 
 if __name__ == "__main__":
-	process()
+	t = Pickup(p)
+	t.process()

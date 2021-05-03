@@ -1,0 +1,77 @@
+import requests,time
+
+class Order:
+	def __init__(self,order_number):
+		self.order_number = order_number
+		self.shipped = False
+		self.error = None
+	
+	def check_order(self,order):
+		item = {
+		"name":"",
+		"order_number":order,
+		"image":"",
+		"sku":"",
+		"tracking":"",
+		"tracking_status":"",
+		"carrier":""
+		}
+		s = requests.session()
+		order_url = "https://footlocker.narvar.com/tracking/itemvisibility/v1/footlocker/orders/{}".format(order)	
+		s.headers.update({
+		"accept":"*/*",
+		"accept-encoding":"gzip, deflate, br",
+		"accept-language":"en-GB,en-US;q=0.9,en;q=0.8",
+		"referer":"https://footlocker.narvar.com/footlocker/tracking/startrack",
+		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+		})
+		r = s.get(order_url)
+		if r.status_code == 200:
+			r = r.json()
+			status = r.get("status")
+			if status == "SUCCESS":
+				for i in r["order_info"]["order_items"]:
+					if i["fulfillment_status"] == "SHIPPED":
+						item["name"] = i["name"]
+						item["image"] = "https:"+i["item_image"]
+						item["sku"] = i["sku"]
+					else:
+						print("Order: {} not shipped yet".format(order))
+				# if r.get("tracking_info"):
+				for i in r["tracking_info"]:
+					item["tracking"] = i["tracking_url"]
+					item["carrier"] = i["carrier_name"]
+					item["tracking_status"] = i["status"]
+				if item["name"] and item["image"] and item["sku"] and item["tracking"]:
+					self.shipped = True
+			elif status == "FAILURE":
+				print("No orders/ghosted.")
+				print(r["messages"])
+		else:
+			print(r.status_code)
+			print("Failed fetching api")
+			print(r.text)
+			self.error = r.text
+		# error but not not shipped = failed to fetch
+		# no error and not shipped = 
+		# no error and shipped = 
+		return self.error,self.shipped,item
+
+	def process(self):
+		tmp = []
+		for i in self.order_number:
+			error,is_shipped,item = self.check_order(i)
+			tmp.append([error,is_shipped,item])
+			time.sleep(5)
+		return tmp
+			
+
+
+if __name__ == "__main__":
+	n = ["2494924042821100986494","2494924042821100987327"]
+	t = Order(n)
+	q = t.process()
+	for i in q:
+		if not i[0]:
+			if i[1]:
+				print(i[2])

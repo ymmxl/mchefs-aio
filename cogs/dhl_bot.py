@@ -219,7 +219,7 @@ class dhl_bot(commands.Cog):
 		package = args[4]
 		try:
 			if args[2].lower() == "today":
-				date = dt.today().strftime("%Y-%m-%d")
+				date = dt.today().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore")).strftime("%Y-%m-%d")
 			elif dt.strptime(args[2],"%Y-%m-%d"):
 				date = dt.strptime(args[2],"%Y-%m-%d").strftime("%Y-%m-%d")
 			else:
