@@ -2,7 +2,7 @@ import json, os, discord, requests, pytz,asyncio,typing,time
 from datetime import datetime as dt
 import datetime
 from discord.ext import commands
-#from utils.ftl_order import Order
+from utils.ftl_order import Order
 
 class utility_bot(commands.Cog):
 	def __init__(self,client):
