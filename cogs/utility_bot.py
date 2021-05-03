@@ -121,8 +121,8 @@ class utility_bot(commands.Cog):
 				if i[1]:
 					items=i[2]
 					embed = discord.Embed(title="FTL Order Shipped!",color=5814783)
-					embed.add_field(name=items["name"],value="**Region**:{}\n**Order number**: ||`{}`||\n**size**: `{}`".format(args[0].upper(),items["order_number"],items["sku"][-3:]))	
-					embed.add_field(name="Tracking URL",value="**STATUS**: `{}`\n[{}]({})".format(items["tracking_status"],items["carrier"],items["tracking"]))
+					embed.add_field(name=items["name"] if items["name"] else "N/A",value="**Region**:**{}**\n**Order number**: ||`{}`||\n**size**: `{}`".format(args[0].upper(),items["order_number"],items["sku"][-3:]),inline=False)	
+					embed.add_field(name="Tracking URL",value="**STATUS**: `{}`\n[{}]({})".format(items["tracking_status"],items["carrier"],items["tracking"]),inline=False)
 					embed.set_thumbnail(url=items["image"])
 					embed.set_footer(text="cracked#7701 powered by Apple M1")
 					await message.channel.send(embed=embed)

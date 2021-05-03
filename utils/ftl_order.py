@@ -62,7 +62,7 @@ class Order:
 		for i in self.order_number:
 			error,is_shipped,item = self.check_order(i)
 			tmp.append([error,is_shipped,item])
-			time.sleep(5)
+			time.sleep(1)
 		return tmp
 			
 
