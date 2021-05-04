@@ -3,10 +3,10 @@ import requests,time
 class Order:
 	def __init__(self,order_number):
 		self.order_number = order_number
-		self.shipped = False
-		self.error = None
 	
 	def check_order(self,order):
+		shipped = False
+		error = None
 		item = {
 		"name":"",
 		"order_number":order,
@@ -43,7 +43,7 @@ class Order:
 					item["carrier"] = i["carrier_name"]
 					item["tracking_status"] = i["status"]
 				if item["name"] and item["image"] and item["sku"] and item["tracking"]:
-					self.shipped = True
+					shipped = True
 			elif status == "FAILURE":
 				print("No orders/ghosted.")
 				print(r["messages"])
@@ -51,11 +51,11 @@ class Order:
 			print(r.status_code)
 			print("Failed fetching api")
 			print(r.text)
-			self.error = r.text
+			error = r.text
 		# error but not not shipped = failed to fetch
 		# no error and not shipped = 
 		# no error and shipped = 
-		return self.error,self.shipped,item
+		return error,shipped,item
 
 	def process(self):
 		tmp = []

@@ -78,6 +78,8 @@ class utility_bot(commands.Cog):
 
 	@commands.command(pass_context=True)
 	async def ftl(self,message,*,kw:str):
+		if message.author.id != 329298525752131585:
+			await message.channel.send("This command is only for @Cracked :)")
 		def check(m):
 			return m.author == message.author and  m.channel == channel		
 		args = kw.split(",")
