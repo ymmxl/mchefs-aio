@@ -1,4 +1,4 @@
-import discord, json,psycopg2,os,re
+import discord, json,psycopg2,os,re,pytz
 from psycopg2 import connect, extensions, sql
 #from discord.ext.commands import Bot
 from datetime import datetime as dt
