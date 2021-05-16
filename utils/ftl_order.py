@@ -37,13 +37,14 @@ class Order:
 						item["sku"] = i["sku"]
 					else:
 						print("Order: {} not shipped yet".format(order))
+						break
 				# if r.get("tracking_info"):
-				for i in r["tracking_info"]:
-					item["tracking"] = i["tracking_url"]
-					item["carrier"] = i["carrier_name"]
-					item["tracking_status"] = i["status"]
-				if item["name"] and item["image"] and item["sku"] and item["tracking"]:
-					shipped = True
+					for i in r["tracking_info"]:
+						item["tracking"] = i["tracking_url"]
+						item["carrier"] = i["carrier_name"]
+						item["tracking_status"] = i["status"]
+					if item["name"] and item["image"] and item["sku"] and item["tracking"]:
+						shipped = True
 			elif status == "FAILURE":
 				print("No orders/ghosted.")
 				print(r["messages"])

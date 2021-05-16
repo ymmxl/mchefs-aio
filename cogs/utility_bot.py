@@ -88,8 +88,8 @@ class utility_bot(commands.Cog):
 		try:
 			if args[1].lower() == "today":
 				date=dt.today().replace(tzinfo=pytz.utc).astimezone(pytz.timezone("singapore"))
-			elif dt.strptime(args[1],"%Y-%m-%d"):
-				date = dt.strptime(args[1],"%Y-%m-%d")
+			elif dt.strptime(args[1].strip(),"%Y-%m-%d"):
+				date = dt.strptime(args[1].strip(),"%Y-%m-%d")
 			else:
 				date = None
 		except Exception as e:
