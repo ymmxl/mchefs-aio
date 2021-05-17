@@ -1,6 +1,6 @@
 import requests,time
 from datetime import datetime as dt
-import random
+import random,base64
 
 class Order:
 	def __init__(self,order_number):
