@@ -1,9 +1,16 @@
 import requests,time
+from datetime import datetime as dt
+import random
 
 class Order:
 	def __init__(self,order_number):
 		self.order_number = order_number
 	
+	def get_id():
+		i = "%032x" % random.randrange(16**32)
+		d = dt.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]+"Z"
+		q = i+"::"+d
+		return base64.b64encode(q.encode("ascii")).decode("ascii")
 	def check_order(self,order):
 		shipped = False
 		error = None
@@ -30,6 +37,8 @@ class Order:
 		"referer":"https://footlocker.narvar.com/footlocker/tracking/startrack?order_number={}".format(order),
 		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 		})
+		b = get_id()
+		s.cookies.set("Shipment",b,domain="footlocker.narvar.com")
 		s.get(main_url)
 		q = s.get(order_url)
 		if q.status_code == 200:

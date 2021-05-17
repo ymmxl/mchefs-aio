@@ -1,4 +1,4 @@
-import json, os, discord, requests, pytz,asyncio,typing,time
+import json, os, discord, requests, pytz,asyncio,typing,time,re
 from datetime import datetime as dt
 import datetime
 from discord.ext import commands
@@ -114,7 +114,8 @@ class utility_bot(commands.Cog):
 							for k in t["fields"]:
 								if k["name"] == "Order:":
 									master.append(k["value"].replace("|",""))
-		await message.channel.send("Found {} {} orders on {}.".format(str(len(master)),region,date.strftime("%Y-%m-%d")))
+		if len(master) > 0:
+			await message.channel.send("Found {} {} orders on {}.".format(str(len(master)),region,date.strftime("%Y-%m-%d")))
 		order_list = Order(master).process()
 		failed = []
 		not_shipped = []
@@ -139,14 +140,15 @@ class utility_bot(commands.Cog):
 			elif "ghosted" in i[0].lower():
 				embed = discord.Embed(title="Order Ghosted",color=13296116,description="**OrderNumber**: ||`{}`||".format(i[2]["order_number"]))
 				await message.channel.send(embed=embed)
-			elif ("failed" or "denied") in i[0].lower():
+			
+			if re.match(r"(failed|denied)",i[0].lower()):
 				failed.append(i[2]["order_number"])
 			else:
 				#not shipped
 				pass
 			time.sleep(0.5)
 		
-		if failed or not_shipped:
+		if (failed or not_shipped):
 			tmp=""
 			tmp2=""
 			if failed:
