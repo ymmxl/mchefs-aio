@@ -57,6 +57,7 @@ class Order:
 			s.get(main_url)
 			print(r.request.headers)
 			r = s.get(order_url)
+			print(r.request.cookies)
 			if r.json():
 				r = r.json()
 				status = r.get("status")
