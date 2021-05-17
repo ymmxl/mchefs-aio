@@ -17,13 +17,17 @@ class Order:
 		"carrier":""
 		}
 		s = requests.session()
+		main_url = "https://footlocker.narvar.com/footlocker/tracking/startrack?order_number={}".format(order)
 		order_url = "https://footlocker.narvar.com/tracking/itemvisibility/v1/footlocker/orders/{}".format(order)	
 		s.headers.update({
-		"accept":"*/*",
+		"accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
 		"accept-encoding":"gzip, deflate, br",
 		"accept-language":"en-GB,en-US;q=0.9,en;q=0.8",
-		"referer":"https://footlocker.narvar.com/footlocker/tracking/startrack",
-		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+		"sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"90\", \"Google Chrome\";v=\"90\"",
+		"sec-ch-ua-mobile": "?0",
+		"upgrade-insecure-requests": "1",
+		"referer":"https://footlocker.narvar.com/footlocker/tracking/startrack?order_number={}".format(order),
+		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 		})
 		r = s.get(order_url)
 		if r.status_code == 200:
@@ -48,6 +52,36 @@ class Order:
 			elif status == "FAILURE":
 				print("No orders/ghosted.")
 				print(r["messages"])
+		elif r.status_code == 403:
+			print("Trying to fetch main track page")
+			s.get(main_url)
+			r = s.get(order_url)
+			r = r.json()
+			status = r.get("status")
+			if status == "SUCCESS":
+				for i in r["order_info"]["order_items"]:
+					if i["fulfillment_status"] == "SHIPPED":
+						item["name"] = i["name"]
+						item["image"] = "https:"+i["item_image"]
+						item["sku"] = i["sku"]
+					else:
+						print("Order: {} not shipped yet".format(order))
+						break
+				# if r.get("tracking_info"):
+					for i in r["tracking_info"]:
+						item["tracking"] = i["tracking_url"]
+						item["carrier"] = i["carrier_name"]
+						item["tracking_status"] = i["status"]
+					if item["name"] and item["image"] and item["sku"] and item["tracking"]:
+						shipped = True
+			elif status == "FAILURE":
+				print("No orders/ghosted.")
+				print(r["messages"])
+			else:
+				print(r.status_code)
+				print("Failed fetching api")
+				print(r.text)
+				error = r.text
 		else:
 			print(r.status_code)
 			print("Failed fetching api")
