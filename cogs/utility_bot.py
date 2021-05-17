@@ -141,7 +141,7 @@ class utility_bot(commands.Cog):
 				embed = discord.Embed(title="Order Ghosted",color=13296116,description="**OrderNumber**: ||`{}`||".format(i[2]["order_number"]))
 				await message.channel.send(embed=embed)
 			
-			if re.match(r"(failed|denied)",i[0].lower()):
+			elif re.match(r"(failed|denied)",i[0].lower()):
 				failed.append(i[2]["order_number"])
 			else:
 				#not shipped
