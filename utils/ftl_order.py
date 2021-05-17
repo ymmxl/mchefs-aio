@@ -58,6 +58,7 @@ class Order:
 			print(r.request.headers)
 			r = s.get(order_url)
 			print(s.cookies)
+			print(r.text)
 			if r.json():
 				r = r.json()
 				status = r.get("status")
