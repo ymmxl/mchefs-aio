@@ -55,28 +55,30 @@ class Order:
 		elif r.status_code == 403:
 			print("Trying to fetch main track page")
 			s.get(main_url)
+			print(r.request.headers)
 			r = s.get(order_url)
-			r = r.json()
-			status = r.get("status")
-			if status == "SUCCESS":
-				for i in r["order_info"]["order_items"]:
-					if i["fulfillment_status"] == "SHIPPED":
-						item["name"] = i["name"]
-						item["image"] = "https:"+i["item_image"]
-						item["sku"] = i["sku"]
-					else:
-						print("Order: {} not shipped yet".format(order))
-						break
-				# if r.get("tracking_info"):
-					for i in r["tracking_info"]:
-						item["tracking"] = i["tracking_url"]
-						item["carrier"] = i["carrier_name"]
-						item["tracking_status"] = i["status"]
-					if item["name"] and item["image"] and item["sku"] and item["tracking"]:
-						shipped = True
-			elif status == "FAILURE":
-				print("No orders/ghosted.")
-				print(r["messages"])
+			if r.json():
+				r = r.json()
+				status = r.get("status")
+				if status == "SUCCESS":
+					for i in r["order_info"]["order_items"]:
+						if i["fulfillment_status"] == "SHIPPED":
+							item["name"] = i["name"]
+							item["image"] = "https:"+i["item_image"]
+							item["sku"] = i["sku"]
+						else:
+							print("Order: {} not shipped yet".format(order))
+							break
+					# if r.get("tracking_info"):
+						for i in r["tracking_info"]:
+							item["tracking"] = i["tracking_url"]
+							item["carrier"] = i["carrier_name"]
+							item["tracking_status"] = i["status"]
+						if item["name"] and item["image"] and item["sku"] and item["tracking"]:
+							shipped = True
+				elif status == "FAILURE":
+					print("No orders/ghosted.")
+					print(r["messages"])
 			else:
 				print(r.status_code)
 				print("Failed fetching api")
@@ -97,7 +99,7 @@ class Order:
 		for i in self.order_number:
 			error,is_shipped,item = self.check_order(i)
 			tmp.append([error,is_shipped,item])
-			time.sleep(1)
+			time.sleep(2)
 		return tmp
 			
 
