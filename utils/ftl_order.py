@@ -6,7 +6,7 @@ class Order:
 	def __init__(self,order_number):
 		self.order_number = order_number
 	
-	def get_id():
+	def get_id(self):
 		i = "%032x" % random.randrange(16**32)
 		d = dt.now().strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3]+"Z"
 		q = i+"::"+d
