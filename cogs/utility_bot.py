@@ -97,7 +97,7 @@ class utility_bot(commands.Cog):
 			date = None
 		day2 = date + datetime.timedelta(days=1)
 		day1 = date - datetime.timedelta(days=1)
-		c = self.client.get_channel(838846410405314640)
+		c = self.client.get_channel(803880916279230484)
 		message_list = await c.history(before=day2,after=day1,limit=100).flatten()
 		# for i in message_list:
 		# 	if i.embeds:
