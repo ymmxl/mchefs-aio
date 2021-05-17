@@ -37,7 +37,7 @@ class Order:
 		"referer":"https://footlocker.narvar.com/footlocker/tracking/startrack?order_number={}".format(order),
 		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 		})
-		b = get_id()
+		b = self.get_id()
 		s.cookies.set("Shipment",b,domain="footlocker.narvar.com")
 		s.get(main_url)
 		q = s.get(order_url)
