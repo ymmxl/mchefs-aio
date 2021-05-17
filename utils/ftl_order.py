@@ -32,25 +32,26 @@ class Order:
 		})
 		s.get(main_url)
 		q = s.get(order_url)
-		if r.status_code == 200:
+		if q.status_code == 200:
 			try:
 				r = q.json()
 			except Exception as e:
-				if "error" in r.text:
+				if "error" in q.text:
 					print("200: error page found")
-				print("Failed getting json.")
+				error = "Failed getting json."
+				print(error)
 				print(e)
-		elif r.status_code == 403:
-			print(r.request.headers)
+		elif q.status_code == 403:
+			print(q.request.headers)
 			print(s.cookies)
-			print(r.text)
+			print(q.text)
 			error = "Access denied/ rate limited."
 			print(error)
 		else:
-			print(r.status_code)
-			print("Failed fetching api")
-			print(r.text)
-			error = r.text
+			print(q.status_code)
+			error = "Failed fetching api"
+			print(error)
+			print(q.text)
 		if r:
 			status = r.get("status")
 			if status == "SUCCESS":
