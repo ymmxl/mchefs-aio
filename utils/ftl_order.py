@@ -7,6 +7,7 @@ class Order:
 	def check_order(self,order):
 		shipped = False
 		error = None
+		r=""
 		item = {
 		"name":"",
 		"order_number":order,
@@ -29,13 +30,33 @@ class Order:
 		"referer":"https://footlocker.narvar.com/footlocker/tracking/startrack?order_number={}".format(order),
 		"user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 		})
-		r = s.get(order_url)
+		s.get(main_url)
+		q = s.get(order_url)
 		if r.status_code == 200:
-			r = r.json()
+			try:
+				r = q.json()
+			except Exception as e:
+				if "error" in r.text:
+					print("200: error page found")
+				print("Failed getting json.")
+				print(e)
+		elif r.status_code == 403:
+			print(r.request.headers)
+			print(s.cookies)
+			print(r.text)
+			error = "Access denied/ rate limited."
+			print(error)
+		else:
+			print(r.status_code)
+			print("Failed fetching api")
+			print(r.text)
+			error = r.text
+		if r:
 			status = r.get("status")
 			if status == "SUCCESS":
 				for i in r["order_info"]["order_items"]:
 					if i["fulfillment_status"] == "SHIPPED":
+						print("Order: {} shipped!".format(order))
 						item["name"] = i["name"]
 						item["image"] = "https:"+i["item_image"]
 						item["sku"] = i["sku"]
@@ -44,53 +65,31 @@ class Order:
 						break
 				# if r.get("tracking_info"):
 					for i in r["tracking_info"]:
-						item["tracking"] = i["tracking_url"]
-						item["carrier"] = i["carrier_name"]
+						try:
+							if i["carrier_name"] is not None:
+								item["carrier"] = i["carrier_name"]
+							else:
+								item["carrier"] = r["order_info"]["shipments"][0]["carrier"]
+						except Exception as e:
+							print("Failed getting carrier info")
+							print(e)
+						try:
+							if i["tracking_url"] is not None:
+								item["tracking"] = i["tracking_url"]
+							else:
+								item["tracking"] = r["order_info"]["shipments"][0]["tracking_number"]
+						except Exception as e:
+							print("Failed getting tracking info")
+							print(e)
+						if item["carrier"] = "armx":
+							item["tracking"] = "https://www.aramex.com/track/results?ShipmentNumber={}".format(item["tracking"])
 						item["tracking_status"] = i["status"]
 					if item["name"] and item["image"] and item["sku"] and item["tracking"]:
 						shipped = True
 			elif status == "FAILURE":
-				print("No orders/ghosted.")
+				error = "No orders/ghosted."
+				print(error)
 				print(r["messages"])
-		elif r.status_code == 403:
-			print("Trying to fetch main track page")
-			s.get(main_url)
-			print(r.request.headers)
-			r = s.get(order_url)
-			print(s.cookies)
-			print(r.text)
-			if r.json():
-				r = r.json()
-				status = r.get("status")
-				if status == "SUCCESS":
-					for i in r["order_info"]["order_items"]:
-						if i["fulfillment_status"] == "SHIPPED":
-							item["name"] = i["name"]
-							item["image"] = "https:"+i["item_image"]
-							item["sku"] = i["sku"]
-						else:
-							print("Order: {} not shipped yet".format(order))
-							break
-					# if r.get("tracking_info"):
-						for i in r["tracking_info"]:
-							item["tracking"] = i["tracking_url"]
-							item["carrier"] = i["carrier_name"]
-							item["tracking_status"] = i["status"]
-						if item["name"] and item["image"] and item["sku"] and item["tracking"]:
-							shipped = True
-				elif status == "FAILURE":
-					print("No orders/ghosted.")
-					print(r["messages"])
-			else:
-				print(r.status_code)
-				print("Failed fetching api")
-				print(r.text)
-				error = r.text
-		else:
-			print(r.status_code)
-			print("Failed fetching api")
-			print(r.text)
-			error = r.text
 		# error but not not shipped = failed to fetch
 		# no error and not shipped = 
 		# no error and shipped = 
@@ -101,7 +100,7 @@ class Order:
 		for i in self.order_number:
 			error,is_shipped,item = self.check_order(i)
 			tmp.append([error,is_shipped,item])
-			time.sleep(2)
+			time.sleep(10)
 		return tmp
 			
 

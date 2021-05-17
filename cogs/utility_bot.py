@@ -116,6 +116,8 @@ class utility_bot(commands.Cog):
 									master.append(k["value"].replace("|",""))
 		await message.channel.send("Found {} {} orders on {}.".format(str(len(master)),region,date.strftime("%Y-%m-%d")))
 		order_list = Order(master).process()
+		failed = []
+		not_shipped = []
 		for i in order_list:
 			#if not error
 			if not i[0]:
@@ -124,11 +126,40 @@ class utility_bot(commands.Cog):
 					items=i[2]
 					embed = discord.Embed(title="FTL Order Shipped!",color=5814783)
 					embed.add_field(name=items["name"] if items["name"] else "N/A",value="**Region**:**{}**\n**Order number**: ||`{}`||\n**size**: `{}`".format(args[0].upper(),items["order_number"],items["sku"][-3:]),inline=False)	
-					embed.add_field(name="Tracking URL",value="**STATUS**: `{}`\n[{}]({})".format(items["tracking_status"],items["carrier"],items["tracking"]),inline=False)
+					if items["tracking_status"]:
+						t_status = items["tracking_status"]
+					else:
+						t_status = "N/A"
+					embed.add_field(name="Tracking URL",value="**STATUS**: `{}`\n[{}]({})".format(t_status,items["carrier"],items["tracking"]),inline=False)
 					embed.set_thumbnail(url=items["image"])
 					embed.set_footer(text="cracked#7701 powered by Apple M1")
 					await message.channel.send(embed=embed)
+				else:
+					not_shipped.append(i[2]["order_number"])
+			elif "ghosted" in i[0].lower():
+				embed = discord.Embed(title="Order Ghosted",color=13296116,description="**OrderNumber**: ||`{}`||".format(i[2]["order_number"]))
+				await message.channel.send(embed=embed)
+			elif ("failed" or "denied") in i[0].lower():
+				failed.append(i[2]["order_number"])
+			else:
+				#not shipped
+				pass
 			time.sleep(0.5)
+		
+		if failed or not_shipped:
+			tmp=""
+			tmp2=""
+			if failed:
+				for i in failed:
+					tmp = "FAILED TO FETCH:\n"
+					tmp += "{}\n".format(i)
+			if not_shipped:
+				for i in not_shipped:
+					tmp2 = "NOT_SHIPPED:\n"
+					tmp2 += "{}\n".format(i)
+			embed = discord.Embed(title="Failed to fetch/ Not Shipped",color=13296116,description="**OrderNumber(s)**\n```{}{}```".format(tmp,tmp2))
+			await message.channel.send(embed=embed)
+
 	# @commands.command(pass_context=True)
 	# async def ftl(self,message,*,kw:str):
 # # 	def format_stock(self,stock):
