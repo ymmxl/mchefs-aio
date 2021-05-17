@@ -81,7 +81,7 @@ class Order:
 						except Exception as e:
 							print("Failed getting tracking info")
 							print(e)
-						if item["carrier"] = "armx":
+						if item["carrier"] == "armx":
 							item["tracking"] = "https://www.aramex.com/track/results?ShipmentNumber={}".format(item["tracking"])
 						item["tracking_status"] = i["status"]
 					if item["name"] and item["image"] and item["sku"] and item["tracking"]:
